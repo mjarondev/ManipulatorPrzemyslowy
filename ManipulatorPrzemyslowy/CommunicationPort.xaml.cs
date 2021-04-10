@@ -21,6 +21,11 @@ namespace ManipulatorPrzemyslowy
         public CommunicationPort()
         {
             InitializeComponent();
+            RefreshState();
+        }
+
+        public void RefreshState()
+        {
             portBox.ItemsSource = SerialPort.GetPortNames();
         }
 

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace ManipulatorPrzemyslowy
 {
     /// <summary>
@@ -20,6 +21,9 @@ namespace ManipulatorPrzemyslowy
     /// </summary>
     public partial class MainWindow : Window
     {
+        //events
+
+        //other windows
         CommunicationPort comPort;
 
         public MainWindow()
@@ -40,7 +44,10 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
-
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            comPort.Close();
+        }
     }
 
     
