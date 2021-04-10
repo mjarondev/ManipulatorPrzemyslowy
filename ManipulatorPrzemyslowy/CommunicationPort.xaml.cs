@@ -16,8 +16,21 @@ namespace ManipulatorPrzemyslowy
     /// <summary>
     /// Interaction logic for CommunicationPort.xaml
     /// </summary>
+    /// 
+
+
+
     public partial class CommunicationPort : Window
     {
+        //event
+        public event EventHandler<WindowClosedEventArgs> WindowClosed;
+
+        protected virtual void OnWindowClosed(WindowClosedEventArgs e)
+        {
+            WindowClosed?.Invoke(this, e);
+        }
+
+
         public CommunicationPort()
         {
             InitializeComponent();
@@ -29,5 +42,9 @@ namespace ManipulatorPrzemyslowy
             portBox.ItemsSource = SerialPort.GetPortNames();
         }
 
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            OnWindowClosed(new WindowClosedEventArgs());
+        }
     }
 }

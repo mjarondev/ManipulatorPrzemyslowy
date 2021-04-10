@@ -8,6 +8,7 @@ namespace ManipulatorPrzemyslowy
     {
         public WindowClosedEventArgs()
         {
+
         }
     }
 }

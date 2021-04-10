@@ -29,6 +29,7 @@ namespace ManipulatorPrzemyslowy
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -36,6 +37,7 @@ namespace ManipulatorPrzemyslowy
             if (comPort is null)
             {
                 comPort = new CommunicationPort();
+                comPort.WindowClosed += ComPortWindowClosed;
                 comPort.Show();
             }
             else
@@ -43,6 +45,13 @@ namespace ManipulatorPrzemyslowy
                 comPort.Activate();
             }
         }
+
+        private void ComPortWindowClosed(object sender, WindowClosedEventArgs e)
+        {
+            comPort.WindowClosed -= ComPortWindowClosed;
+            comPort = null;
+        }
+
 
         private void Window_Closed(object sender, EventArgs e)
         {
