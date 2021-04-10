@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManipulatorPrzemyslowy"
         mc:Ignorable="d"
-        Title="CommunicationPort" Height="300" Width="400">
+        Title="CommunicationPort" Height="300" Width="400" Closed="Window_Closed">
     <Grid>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Height="150">
             <StackPanel>
