@@ -20,9 +20,33 @@ namespace ManipulatorPrzemyslowy
     /// </summary>
     public partial class MainWindow : Window
     {
+        CommunicationPort comPort;
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (comPort is null)
+            {
+                comPort = new CommunicationPort();
+                comPort.Show();
+            }
+            else
+            {
+                comPort.Activate();
+            }
+        }
+
+
     }
+
+    
+
+
 }
+
+
+
