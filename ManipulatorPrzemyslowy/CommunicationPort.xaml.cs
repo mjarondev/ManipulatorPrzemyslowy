@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO.Ports; //zainstalowany przez nuget
 
 namespace ManipulatorPrzemyslowy
 {
@@ -17,11 +18,11 @@ namespace ManipulatorPrzemyslowy
     /// </summary>
     public partial class CommunicationPort : Window
     {
-
-
         public CommunicationPort()
         {
             InitializeComponent();
+            portBox.ItemsSource = SerialPort.GetPortNames();
         }
+
     }
 }

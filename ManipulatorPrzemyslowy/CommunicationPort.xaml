@@ -5,8 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManipulatorPrzemyslowy"
         mc:Ignorable="d"
-        Title="CommunicationPort" Height="450" Width="800">
+        Title="CommunicationPort" Height="300" Width="400">
     <Grid>
-        
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Height="150">
+            <StackPanel>
+                <Label Content="Port:" Height="30"/>
+                <Label Content="Baud rate:" Height="30"/>
+                <Label Content="Data bits:" Height="30"/>
+                <Label Content="Parity:" Height="30"/>
+                <Label Content="Stop Bits:" Height="30"/>
+            </StackPanel>
+            <StackPanel>
+                <ComboBox Name="portBox" Width="120" Height="30"/>
+                <ComboBox Width="120" Height="30"/>
+                <ComboBox Width="120" Height="30"/>
+                <ComboBox Width="120" Height="30"/>
+                <ComboBox Width="120" Height="30"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Window>

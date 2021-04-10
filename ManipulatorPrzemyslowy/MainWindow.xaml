@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManipulatorPrzemyslowy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="115" Width="220">
+        Title="MainWindow" Height="137" Width="220">
     <StackPanel>
         <Button Content="Communication Port" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="22" Click="Button_Click"/>
         <Button Content="Command tool" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="22"/>
