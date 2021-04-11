@@ -29,9 +29,9 @@ namespace ManipulatorPrzemyslowy
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
+        //Uruchamia okno Communication Port lub jeżeli jest ono uruchomione aktywuje je
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if (comPort is null)
@@ -46,13 +46,18 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
+        //W przypadku gdy okno ComPort zostało zamknięte kasuje odniesienie do niego w głównym oknie
         private void ComPortWindowClosed(object sender, WindowClosedEventArgs e)
         {
-            comPort.WindowClosed -= ComPortWindowClosed;
-            comPort = null;
+            if (comPort != null)
+            {
+                comPort.WindowClosed -= ComPortWindowClosed;
+                comPort = null;
+            }
         }
 
 
+        //Zamyka pozostałe okna gdy główne zostało wyłączone
         private void Window_Closed(object sender, EventArgs e)
         {
             comPort?.Close();

@@ -18,11 +18,9 @@ namespace ManipulatorPrzemyslowy
     /// </summary>
     /// 
 
-
-
     public partial class CommunicationPort : Window
     {
-        //event
+        //events
         public event EventHandler<WindowClosedEventArgs> WindowClosed;
 
         protected virtual void OnWindowClosed(WindowClosedEventArgs e)
@@ -36,16 +34,19 @@ namespace ManipulatorPrzemyslowy
             InitializeComponent();
         }
 
+        //Odświerza listę aktywnych portów COM
         public void RefreshState()
         {
             portBox.ItemsSource = SerialPort.GetPortNames();
         }
 
+        //Przy zamknięciu okna PortCom wywołuje zdarzenie usuwające odniesienie do ComPort w oknie głównym
         private void Window_Closed(object sender, EventArgs e)
         {
             OnWindowClosed(new WindowClosedEventArgs());
         }
 
+        //Odświerza listę aktywnych portów COM przy otwieraniu listy portów
         private void portBox_DropDownOpened(object sender, EventArgs e)
         {
             RefreshState();
