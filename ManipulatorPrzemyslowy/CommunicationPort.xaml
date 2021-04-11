@@ -16,7 +16,7 @@
                 <Label Content="Stop Bits:" Height="30"/>
             </StackPanel>
             <StackPanel>
-                <ComboBox Name="portBox" Width="120" Height="30"/>
+                <ComboBox Name="portBox" Width="120" Height="30" DropDownOpened="portBox_DropDownOpened"/>
                 <ComboBox Width="120" Height="30"/>
                 <ComboBox Width="120" Height="30"/>
                 <ComboBox Width="120" Height="30"/>

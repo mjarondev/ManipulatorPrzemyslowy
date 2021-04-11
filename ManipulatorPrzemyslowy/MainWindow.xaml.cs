@@ -55,7 +55,7 @@ namespace ManipulatorPrzemyslowy
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            comPort.Close();
+            comPort?.Close();
         }
     }
 

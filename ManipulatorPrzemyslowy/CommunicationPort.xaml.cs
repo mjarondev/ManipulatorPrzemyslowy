@@ -34,7 +34,6 @@ namespace ManipulatorPrzemyslowy
         public CommunicationPort()
         {
             InitializeComponent();
-            RefreshState();
         }
 
         public void RefreshState()
@@ -45,6 +44,11 @@ namespace ManipulatorPrzemyslowy
         private void Window_Closed(object sender, EventArgs e)
         {
             OnWindowClosed(new WindowClosedEventArgs());
+        }
+
+        private void portBox_DropDownOpened(object sender, EventArgs e)
+        {
+            RefreshState();
         }
     }
 }
