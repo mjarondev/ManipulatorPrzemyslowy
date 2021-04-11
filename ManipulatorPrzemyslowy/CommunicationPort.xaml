@@ -7,20 +7,24 @@
         mc:Ignorable="d"
         Title="CommunicationPort" Height="300" Width="400" Closed="Window_Closed">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Height="150">
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Height="274">
             <StackPanel>
                 <Label Content="Port:" Height="30"/>
                 <Label Content="Baud rate:" Height="30"/>
                 <Label Content="Data bits:" Height="30"/>
                 <Label Content="Parity:" Height="30"/>
                 <Label Content="Stop Bits:" Height="30"/>
+                <Label Content="Handshake:" Height="30"/>
+                <Label Content="Send timeout:" Height="30"/>
+                <Label Content="Receive timeout:" Height="30"/>
             </StackPanel>
             <StackPanel>
                 <ComboBox Name="portBox" Width="120" Height="30" DropDownOpened="portBox_DropDownOpened"/>
-                <ComboBox Width="120" Height="30"/>
-                <ComboBox Width="120" Height="30"/>
-                <ComboBox Width="120" Height="30"/>
-                <ComboBox Width="120" Height="30"/>
+                <ComboBox x:Name="BaudRateCombo" Width="120" Height="30"/>
+                <ComboBox x:Name="DataBitsCombo" Width="120" Height="30"/>
+                <ComboBox x:Name="ParityCombo" Width="120" Height="30"/>
+                <ComboBox x:Name="StopBitsCombo" Width="120" Height="30"/>
+                <ComboBox x:Name="HandshakeComboBox" Width="120" Height="30"/>
             </StackPanel>
         </StackPanel>
     </Grid>
