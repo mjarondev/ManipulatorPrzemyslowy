@@ -7,24 +7,32 @@
         mc:Ignorable="d"
         Title="CommunicationPort" Height="300" Width="400" Closed="Window_Closed">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Height="274">
-            <StackPanel>
-                <Label Content="Port:" Height="30"/>
-                <Label Content="Baud rate:" Height="30"/>
-                <Label Content="Data bits:" Height="30"/>
-                <Label Content="Parity:" Height="30"/>
-                <Label Content="Stop Bits:" Height="30"/>
-                <Label Content="Handshake:" Height="30"/>
-                <Label Content="Send timeout:" Height="30"/>
-                <Label Content="Receive timeout:" Height="30"/>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Height="200" Width="220">
+            <StackPanel Width="100">
+                <Label Content="Port:" Height="25"/>
+                <Label Content="Baud rate:" Height="25"/>
+                <Label Content="Data bits:" Height="25"/>
+                <Label Content="Parity:" Height="25"/>
+                <Label Content="Stop Bits:" Height="25"/>
+                <Label Content="Handshake:" Height="25"/>
+                <Label Content="Send timeout:" Height="25"/>
+                <Label Content="Receive timeout:" Height="25"/>
             </StackPanel>
-            <StackPanel>
-                <ComboBox Name="portBox" Width="120" Height="30" DropDownOpened="portBox_DropDownOpened"/>
-                <ComboBox x:Name="BaudRateCombo" Width="120" Height="30"/>
-                <ComboBox x:Name="DataBitsCombo" Width="120" Height="30"/>
-                <ComboBox x:Name="ParityCombo" Width="120" Height="30"/>
-                <ComboBox x:Name="StopBitsCombo" Width="120" Height="30"/>
-                <ComboBox x:Name="HandshakeComboBox" Width="120" Height="30"/>
+            <StackPanel Width="120">
+                <ComboBox Name="portBox" Width="120" Height="25" DropDownOpened="portBox_DropDownOpened"/>
+                <ComboBox x:Name="BaudRateCombo" Width="120" Height="25"/>
+                <ComboBox x:Name="DataBitsCombo" Width="120" Height="25"/>
+                <ComboBox x:Name="ParityCombo" Width="120" Height="25"/>
+                <ComboBox x:Name="StopBitsCombo" Width="120" Height="25"/>
+                <ComboBox x:Name="HandshakeComboBox" Width="120" Height="25"/>
+                <StackPanel Height="25" Orientation="Horizontal">
+                    <TextBox Text="5" TextWrapping="Wrap" TextAlignment="Center" Width="30"/>
+                    <Label Content="Seconds (1-30)" Width="90"/>
+                </StackPanel>
+                <StackPanel Height="25" Orientation="Horizontal">
+                    <TextBox Text="5" TextWrapping="Wrap" TextAlignment="Center" Width="30"/>
+                    <Label Content="Seconds (1-30)" Width="90"/>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>
