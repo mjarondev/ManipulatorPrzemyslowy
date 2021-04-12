@@ -26,14 +26,15 @@
                 <ComboBox x:Name="StopBitsCombo" Width="120" Height="25"/>
                 <ComboBox x:Name="HandshakeComboBox" Width="120" Height="25"/>
                 <StackPanel Height="25" Orientation="Horizontal">
-                    <TextBox Text="5" TextWrapping="Wrap" TextAlignment="Center" Width="30"/>
+                    <TextBox x:Name="SendTimeoutBox" Text="5" TextWrapping="Wrap" TextAlignment="Center" Width="30"/>
                     <Label Content="Seconds (1-30)" Width="90"/>
                 </StackPanel>
                 <StackPanel Height="25" Orientation="Horizontal">
-                    <TextBox Text="5" TextWrapping="Wrap" TextAlignment="Center" Width="30"/>
+                    <TextBox x:Name="ReceiveTimeoutBox" Text="5" TextWrapping="Wrap" TextAlignment="Center" Width="30"/>
                     <Label Content="Seconds (1-30)" Width="90"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
+        <Button x:Name="SaveButton" Content="Save options" HorizontalAlignment="Center" Margin="0,215,0,0" VerticalAlignment="Top" Height="41" Width="112"/>
     </Grid>
 </Window>
