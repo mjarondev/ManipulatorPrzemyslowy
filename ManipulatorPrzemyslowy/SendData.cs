@@ -6,7 +6,7 @@ using System.IO.Ports;
 namespace ManipulatorPrzemyslowy
 {
     //klasa posiadająca dane konieczne do rozpoczęcia komunikacji portem COM
-    class SendData
+    public class SendData
     {
         private string portName;
         private int baudRate, dataBits, sendTimeout, receiveTimeout;
@@ -49,6 +49,7 @@ namespace ManipulatorPrzemyslowy
         {
             get
             {
+                //TODO: dodac sprawdzanie czy dany port jest aktywny podczas odczytu
                 return portName.ToString();
             }
             set
@@ -68,7 +69,7 @@ namespace ManipulatorPrzemyslowy
             }
             set
             {
-                if(!Int32.TryParse(value.ToString(), out baudRate))
+                if (!Int32.TryParse(value.ToString(), out baudRate))
                 {
                     throw new ArgumentException("Invalid value, cannot convert to Int32");
                 }
@@ -85,7 +86,7 @@ namespace ManipulatorPrzemyslowy
             set
             {
                 object temp;
-                if(Enum.TryParse(typeof(Parity), value.ToString(), true, out temp))
+                if (Enum.TryParse(typeof(Parity), value.ToString(), true, out temp))
                 {
                     parity = (Parity)temp;
                 }
@@ -150,6 +151,29 @@ namespace ManipulatorPrzemyslowy
                 }
             }
         }
+
+        public SendData()
+        {
+            setToDefault();
+        }
+
+        //ustawia domyślne ustawienia komunikacji portu COM
+        public void setToDefault()
+        {
+            if (SerialPort.GetPortNames().Length < 1)
+            {
+                throw new InvalidOperationException("Nie znaleziono aktywnego portu COM");
+            }
+            portName = SerialPort.GetPortNames()[0];
+            baudRate = 9600;
+            dataBits = 8;
+            sendTimeout = 5;
+            receiveTimeout = 5;
+            parity = Parity.None;
+            stopBits = StopBits.One;
+            handshake = Handshake.None;
+        }
+
 
     }
 }

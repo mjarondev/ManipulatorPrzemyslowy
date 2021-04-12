@@ -21,16 +21,20 @@ namespace ManipulatorPrzemyslowy
     /// </summary>
     public partial class MainWindow : Window
     {
-
-
-
         //events
 
         //other windows
         CommunicationPort comPort;
 
+        //dane połączenia z portem COM
+        SendData data;
+
         public MainWindow()
         {
+
+            //inicjalizacja z domyslnymi ustawieniami portu
+            data = new SendData();
+
             InitializeComponent();
         }
 
