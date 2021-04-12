@@ -21,6 +21,9 @@ namespace ManipulatorPrzemyslowy
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
+
         //events
 
         //other windows
