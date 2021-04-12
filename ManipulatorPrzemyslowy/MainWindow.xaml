@@ -7,9 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="237" Width="220" Closed="Window_Closed">
     <StackPanel>
-        <Button Content="Communication Port" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="22" Click="Button_Click"/>
+        <Button x:Name="CommunicationPortButton" Content="Communication Port" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="22" Click="CommunicationPortButton_Click"/>
         <Button Content="Command tool" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="22"/>
         <Button Content="Jog operator" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="22"/>
-        <Label Name="testLbl" Content="Label" Height="120"/>
+        <Label Name="testLbl" Content="Label" Height="35"/>
+        <Button x:Name="ConnectButton" Content="Connect" FontSize="22" Click="ConnectButton_Click"/>
+        <Button x:Name="SendButton" Content="Send" FontSize="22" Click="SendButton_Click"/>
     </StackPanel>
 </Window>

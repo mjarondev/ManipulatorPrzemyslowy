@@ -13,6 +13,14 @@ namespace ManipulatorPrzemyslowy
         }
     }
 
-    //Klasa 
+    //Klasa zdarzenia przekazującego dane portów COM
+    public class UpdateDataEventArgs : EventArgs
+    {
+        public readonly SendData data;
+        public UpdateDataEventArgs(SendData receivedData)
+        {
+            data = receivedData;
+        }
+    }
 
 }

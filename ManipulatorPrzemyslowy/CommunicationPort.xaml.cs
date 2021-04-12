@@ -37,20 +37,48 @@ namespace ManipulatorPrzemyslowy
         }
 
 
-        public CommunicationPort()
+        public event EventHandler<UpdateDataEventArgs> UpdateData;
+
+        protected virtual void OnUpdateData(UpdateDataEventArgs e)
+        {
+            UpdateData?.Invoke(this, e);
+        }
+
+        //dane połączenia z portem COM
+        SendData data;
+
+        public CommunicationPort(SendData d)
         {
             InitializeComponent();
+            RefreshState();
+
             BaudRateCombo.ItemsSource = baudRates;
             ParityCombo.ItemsSource = parity;
             DataBitsCombo.ItemsSource = dataBits;
             StopBitsCombo.ItemsSource = stopBits;
             HandshakeComboBox.ItemsSource = handshake;
+
+            SetData(d);
+
+            PortCombo.SelectedItem = data.PortName.ToString();
+            BaudRateCombo.SelectedItem = data.BaudRate.ToString();
+            ParityCombo.SelectedItem = data.PortParity.ToString();
+            DataBitsCombo.SelectedItem = data.DataBits.ToString();
+            StopBitsCombo.SelectedItem = data.PortStopBits.ToString();
+            HandshakeComboBox.SelectedItem = data.PortHandshake.ToString();
+ 
+
+        }
+
+        public void SetData(SendData d)
+        {
+            data = d;
         }
 
         //Odświerza listę aktywnych portów COM
         public void RefreshState()
         {
-            PortBox.ItemsSource = SerialPort.GetPortNames();
+            PortCombo.ItemsSource = SerialPort.GetPortNames();
         }
 
         //Przy zamknięciu okna PortCom wywołuje zdarzenie usuwające odniesienie do ComPort w oknie głównym
@@ -60,9 +88,20 @@ namespace ManipulatorPrzemyslowy
         }
 
         //Odświerza listę aktywnych portów COM przy otwieraniu listy portów
-        private void PortBox_DropDownOpened(object sender, EventArgs e)
+        private void PortCombo_DropDownOpened(object sender, EventArgs e)
         {
             RefreshState();
+        }
+
+        //Przy kliknięciu SaveButton wywołuje zdarzenie zapisujące dane w oknie głównym
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO: ewentualnie poprawić czy coś po zmianie w SendData
+            //TODO: uwzględnić ograniczenia 1-30sekund
+            data.BaudRate = Int32.Parse(BaudRateCombo.Text);
+            
+
+            OnUpdateData(new UpdateDataEventArgs(data));
         }
     }
 }

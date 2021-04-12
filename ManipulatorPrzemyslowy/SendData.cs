@@ -14,6 +14,7 @@ namespace ManipulatorPrzemyslowy
         private StopBits stopBits;
         private Handshake handshake;
 
+        //TODO: Nie wiem czy te ify bezpieczeństwa są niezbędne, przypomnieć sobie własności c# i poprawić
 
         public int ReceiveTimeout
         {

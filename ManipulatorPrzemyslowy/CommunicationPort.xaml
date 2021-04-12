@@ -19,7 +19,7 @@
                 <Label Content="Receive timeout:" Height="25"/>
             </StackPanel>
             <StackPanel Width="120">
-                <ComboBox x:Name="PortBox" Width="120" Height="25" DropDownOpened="PortBox_DropDownOpened"/>
+                <ComboBox x:Name="PortCombo" Width="120" Height="25" DropDownOpened="PortCombo_DropDownOpened"/>
                 <ComboBox x:Name="BaudRateCombo" Width="120" Height="25"/>
                 <ComboBox x:Name="DataBitsCombo" Width="120" Height="25"/>
                 <ComboBox x:Name="ParityCombo" Width="120" Height="25"/>
@@ -35,6 +35,6 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <Button x:Name="SaveButton" Content="Save options" HorizontalAlignment="Center" Margin="0,215,0,0" VerticalAlignment="Top" Height="41" Width="112"/>
+        <Button x:Name="SaveButton" Content="Save options" HorizontalAlignment="Center" Margin="0,215,0,0" VerticalAlignment="Top" Height="41" Width="112" Click="SaveButton_Click"/>
     </Grid>
 </Window>
