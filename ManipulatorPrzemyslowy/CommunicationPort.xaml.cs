@@ -107,15 +107,15 @@ namespace ManipulatorPrzemyslowy
                 data.PortStopBits = (StopBits)Enum.Parse(typeof(StopBits), StopBitsCombo.Text, true);
                 data.PortHandshake = (Handshake)Enum.Parse(typeof(Handshake), HandshakeComboBox.Text, true);
             }
-            catch(ArgumentOutOfRangeException argOutE)
+            catch(ArgumentOutOfRangeException ex)
             {
                 //obsługa błędu związana ze zbyt dużymi lub zbyt małymi wartościami w SendTImeout oraz ReceiveTimeout
             }
-            catch (ArgumentException argE)
+            catch (ArgumentException ex)
             {
 
             }
-            catch(FormatException formE)
+            catch(FormatException ex)
             {
                 //obsługa błędu związana z niewłaściwymi wartościami w SendTImeout oraz ReceiveTimeout
             }

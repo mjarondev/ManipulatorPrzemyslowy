@@ -62,7 +62,14 @@ namespace ManipulatorPrzemyslowy
             get
             {
                 //TODO: dodac sprawdzanie czy dany port jest aktywny podczas odczytu
-                return portName.ToString();
+                foreach(string port in SerialPort.GetPortNames())
+                {
+                    if (port.Equals(portName))
+                    {
+                        return portName.ToString();
+                    }
+                }
+                throw new ComPortNotActiveException("Selected COM port is not active");
             }
             set
             {
