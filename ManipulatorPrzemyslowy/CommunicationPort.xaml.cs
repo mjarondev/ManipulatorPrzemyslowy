@@ -96,9 +96,30 @@ namespace ManipulatorPrzemyslowy
         //Przy kliknięciu SaveButton wywołuje zdarzenie zapisujące dane w oknie głównym
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: ewentualnie poprawić czy coś po zmianie w SendData
-            data.BaudRate = Int32.Parse(BaudRateCombo.Text);
-            
+            try
+            {
+                data.PortName = PortCombo.Text.ToString();
+                data.BaudRate = Int32.Parse(BaudRateCombo.Text);
+                data.DataBits = Int32.Parse(DataBitsCombo.Text);
+                data.SendTimeout = Int32.Parse(SendTimeoutBox.Text);
+                data.ReceiveTimeout = Int32.Parse(ReceiveTimeoutBox.Text);
+                data.PortParity = (Parity)Enum.Parse(typeof(Parity), ParityCombo.Text, true);
+                data.PortStopBits = (StopBits)Enum.Parse(typeof(StopBits), StopBitsCombo.Text, true);
+                data.PortHandshake = (Handshake)Enum.Parse(typeof(Handshake), HandshakeComboBox.Text, true);
+            }
+            catch(ArgumentOutOfRangeException argOutE)
+            {
+                //obsługa błędu związana ze zbyt dużymi lub zbyt małymi wartościami w SendTImeout oraz ReceiveTimeout
+            }
+            catch (ArgumentException argE)
+            {
+
+            }
+            catch(FormatException formE)
+            {
+                //obsługa błędu związana z niewłaściwymi wartościami w SendTImeout oraz ReceiveTimeout
+            }
+
 
             OnUpdateData(new UpdateDataEventArgs(data));
         }

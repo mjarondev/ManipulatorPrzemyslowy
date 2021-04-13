@@ -70,6 +70,10 @@ namespace ManipulatorPrzemyslowy
                 {
                     portName = value.ToString();
                 }
+                else
+                {
+                    throw new ArgumentException("Invalid value, required a COM port name");
+                }
             }
         }
 
