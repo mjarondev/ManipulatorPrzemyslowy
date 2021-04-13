@@ -14,7 +14,7 @@ namespace ManipulatorPrzemyslowy
         private StopBits stopBits;
         private Handshake handshake;
 
-        //TODO: Nie wiem czy te ify bezpieczeństwa są niezbędne, przypomnieć sobie własności c# i poprawić
+        //TODO: Nie wiem czy te ify konwertujące wartości są potrzebne
 
         public int ReceiveTimeout
         {
@@ -28,6 +28,12 @@ namespace ManipulatorPrzemyslowy
                 {
                     throw new ArgumentException("Invalid value, cannot convert to Int32");
                 }
+
+                if (value > 30 || value < 1)
+                {
+                    throw new ArgumentOutOfRangeException("Invalid value, should be in range 1-30");
+                }
+
             }
         }
 
@@ -42,6 +48,11 @@ namespace ManipulatorPrzemyslowy
                 if (!Int32.TryParse(value.ToString(), out sendTimeout))
                 {
                     throw new ArgumentException("Invalid value, cannot convert to Int32");
+                }
+
+                if (value > 30 || value < 1)
+                {
+                    throw new ArgumentOutOfRangeException("Invalid value, should be in range 1-30");
                 }
             }
         }

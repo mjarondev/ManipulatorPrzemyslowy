@@ -97,7 +97,6 @@ namespace ManipulatorPrzemyslowy
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO: ewentualnie poprawić czy coś po zmianie w SendData
-            //TODO: uwzględnić ograniczenia 1-30sekund
             data.BaudRate = Int32.Parse(BaudRateCombo.Text);
             
 
