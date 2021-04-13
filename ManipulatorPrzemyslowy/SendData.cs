@@ -14,7 +14,6 @@ namespace ManipulatorPrzemyslowy
         private StopBits stopBits;
         private Handshake handshake;
 
-        //TODO: Nie wiem czy te ify konwertujące wartości są potrzebne
 
         public int ReceiveTimeout
         {
@@ -24,15 +23,11 @@ namespace ManipulatorPrzemyslowy
             }
             set
             {
-                if (!Int32.TryParse(value.ToString(), out receiveTimeout))
-                {
-                    throw new ArgumentException("Invalid value, cannot convert to Int32");
-                }
-
                 if (value > 30 || value < 1)
                 {
                     throw new ArgumentOutOfRangeException("Invalid value, should be in range 1-30");
                 }
+                receiveTimeout = value;
 
             }
         }
@@ -45,15 +40,11 @@ namespace ManipulatorPrzemyslowy
             }
             set
             {
-                if (!Int32.TryParse(value.ToString(), out sendTimeout))
-                {
-                    throw new ArgumentException("Invalid value, cannot convert to Int32");
-                }
-
                 if (value > 30 || value < 1)
                 {
                     throw new ArgumentOutOfRangeException("Invalid value, should be in range 1-30");
                 }
+                sendTimeout = value;
             }
         }
 
@@ -61,7 +52,6 @@ namespace ManipulatorPrzemyslowy
         {
             get
             {
-                //TODO: dodac sprawdzanie czy dany port jest aktywny podczas odczytu
                 foreach(string port in SerialPort.GetPortNames())
                 {
                     if (port.Equals(portName))
@@ -108,15 +98,7 @@ namespace ManipulatorPrzemyslowy
             }
             set
             {
-                object temp;
-                if (Enum.TryParse(typeof(Parity), value.ToString(), true, out temp))
-                {
-                    parity = (Parity)temp;
-                }
-                else
-                {
-                    throw new ArgumentException("Invalid value, cannot convert to Parity");
-                }
+                parity = value;
             }
         }
 
@@ -128,10 +110,7 @@ namespace ManipulatorPrzemyslowy
             }
             set
             {
-                if (!Int32.TryParse(value.ToString(), out dataBits))
-                {
-                    throw new ArgumentException("Invalid value, cannot convert to Int32");
-                }
+                dataBits = value;
             }
         }
 
@@ -143,15 +122,7 @@ namespace ManipulatorPrzemyslowy
             }
             set
             {
-                object temp;
-                if (Enum.TryParse(typeof(StopBits), value.ToString(), true, out temp))
-                {
-                    stopBits = (StopBits)temp;
-                }
-                else
-                {
-                    throw new ArgumentException("Invalid value, cannot convert to StopBits");
-                }
+                stopBits = value;
             }
         }
 
@@ -163,15 +134,7 @@ namespace ManipulatorPrzemyslowy
             }
             set
             {
-                object temp;
-                if (Enum.TryParse(typeof(Handshake), value.ToString(), true, out temp))
-                {
-                    handshake = (Handshake)temp;
-                }
-                else
-                {
-                    throw new ArgumentException("Invalid value, cannot convert to Handshake");
-                }
+                handshake = value;
             }
         }
 
