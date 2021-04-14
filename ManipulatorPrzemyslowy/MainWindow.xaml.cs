@@ -117,7 +117,7 @@ namespace ManipulatorPrzemyslowy
         {
             if(serialPort.IsOpen)
             {
-                serialPort.Write("PING");
+                serialPort.Write(SendTxtBox.Text);
             }
         }
 

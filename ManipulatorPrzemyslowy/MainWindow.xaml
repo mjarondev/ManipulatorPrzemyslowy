@@ -12,6 +12,10 @@
             <Button Content="Command tool" FontSize="22"/>
             <Button Content="Jog operator" FontSize="22"/>
             <Button x:Name="ConnectButton" Content="Connect" FontSize="22" Click="ConnectButton_Click"/>
+            <StackPanel Height="40" Orientation="Horizontal">
+                <Label Content="Wysyłana wiadomość:" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox x:Name="SendTxtBox" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="110"/>
+            </StackPanel>
             <Button x:Name="SendButton" Content="Send" FontSize="22" Click="SendButton_Click"/>
         </StackPanel>
         <StackPanel Width="200">
