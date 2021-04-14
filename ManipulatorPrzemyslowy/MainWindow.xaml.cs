@@ -128,6 +128,7 @@ namespace ManipulatorPrzemyslowy
             BaudRateLbl.Content = data.BaudRate.ToString();
             DataBitsLbl.Content = data.DataBits.ToString();
             ParityLbl.Content = data.PortParity.ToString();
+            StopBitsLbl.Content = data.PortStopBits.ToString();
             HandshakeLbl.Content = data.PortHandshake.ToString();
             SendTimeoutLbl.Content = data.SendTimeout.ToString();
             ReceiveTimeoutLbl.Content = data.ReceiveTimeout.ToString();

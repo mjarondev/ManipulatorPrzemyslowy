@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManipulatorPrzemyslowy"
         mc:Ignorable="d"
-        Title="CommunicationPort" Height="300" Width="400" Closed="Window_Closed">
+        Title="CommunicationPort" Height="280" Width="320" Closed="Window_Closed">
     <Grid>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Top" Height="200" Width="260">
             <StackPanel Width="100">
@@ -35,6 +35,6 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <Button x:Name="SaveButton" Content="Save options" HorizontalAlignment="Center" Margin="0,215,0,0" VerticalAlignment="Top" Height="41" Width="112" Click="SaveButton_Click"/>
+        <Button x:Name="SaveButton" Content="Save options" HorizontalAlignment="Center" Margin="0,205,0,0" VerticalAlignment="Top" Height="40" Width="100" Click="SaveButton_Click"/>
     </Grid>
 </Window>

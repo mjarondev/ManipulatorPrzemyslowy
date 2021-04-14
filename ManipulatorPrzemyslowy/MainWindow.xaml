@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManipulatorPrzemyslowy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="220" Width="440" Closed="Window_Closed">
+        Title="MainWindow" Height="240" Width="440" Closed="Window_Closed">
     <StackPanel Orientation="Horizontal">
         <StackPanel Width="240">
             <Button x:Name="CommunicationPortButton" Content="Communication Port" FontSize="22" Click="CommunicationPortButton_Click"/>
@@ -22,6 +22,7 @@
                         <Label Content="Baud rate:" FontSize="9"/>
                         <Label Content="DataBits" FontSize="9"/>
                         <Label Content="Parity:" FontSize="9"/>
+                        <Label Content="Stop bits:" FontSize="9"/>
                         <Label Content="Handshake:" FontSize="9"/>
                         <Label Content="Send timeout:" FontSize="9"/>
                         <Label Content="Receive timeout:" FontSize="9"/>
@@ -31,6 +32,7 @@
                         <Label x:Name="BaudRateLbl" Content="" FontSize="9"/>
                         <Label x:Name="DataBitsLbl" Content="" FontSize="9"/>
                         <Label x:Name="ParityLbl" Content="" FontSize="9"/>
+                        <Label x:Name="StopBitsLbl" Content="" FontSize="9"/>
                         <Label x:Name="HandshakeLbl" Content="" FontSize="9"/>
                         <Label x:Name="SendTimeoutLbl" Content="" FontSize="9"/>
                         <Label x:Name="ReceiveTimeoutLbl" Content="" FontSize="9"/>
