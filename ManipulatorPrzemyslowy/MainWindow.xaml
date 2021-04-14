@@ -5,13 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManipulatorPrzemyslowy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="237" Width="220" Closed="Window_Closed">
-    <StackPanel>
-        <Button x:Name="CommunicationPortButton" Content="Communication Port" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="22" Click="CommunicationPortButton_Click"/>
-        <Button Content="Command tool" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="22"/>
-        <Button Content="Jog operator" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" FontSize="22"/>
-        <Label Name="testLbl" Content="Label" Height="35"/>
-        <Button x:Name="ConnectButton" Content="Connect" FontSize="22" Click="ConnectButton_Click"/>
-        <Button x:Name="SendButton" Content="Send" FontSize="22" Click="SendButton_Click"/>
+        Title="MainWindow" Height="220" Width="440" Closed="Window_Closed">
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Width="240">
+            <Button x:Name="CommunicationPortButton" Content="Communication Port" FontSize="22" Click="CommunicationPortButton_Click"/>
+            <Button Content="Command tool" FontSize="22"/>
+            <Button Content="Jog operator" FontSize="22"/>
+            <Button x:Name="ConnectButton" Content="Connect" FontSize="22" Click="ConnectButton_Click"/>
+            <Button x:Name="SendButton" Content="Send" FontSize="22" Click="SendButton_Click"/>
+        </StackPanel>
+        <StackPanel Width="200">
+            <Expander Header="Current ComPort data" FontSize="9">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <Label Content="Port:" FontSize="9"/>
+                        <Label Content="Baud rate:" FontSize="9"/>
+                        <Label Content="DataBits" FontSize="9"/>
+                        <Label Content="Parity:" FontSize="9"/>
+                        <Label Content="Handshake:" FontSize="9"/>
+                        <Label Content="Send timeout:" FontSize="9"/>
+                        <Label Content="Receive timeout:" FontSize="9"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label x:Name="PortLbl" Content="" FontSize="9"/>
+                        <Label x:Name="BaudRateLbl" Content="" FontSize="9"/>
+                        <Label x:Name="DataBitsLbl" Content="" FontSize="9"/>
+                        <Label x:Name="ParityLbl" Content="" FontSize="9"/>
+                        <Label x:Name="HandshakeLbl" Content="" FontSize="9"/>
+                        <Label x:Name="SendTimeoutLbl" Content="" FontSize="9"/>
+                        <Label x:Name="ReceiveTimeoutLbl" Content="" FontSize="9"/>
+                    </StackPanel>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
     </StackPanel>
 </Window>

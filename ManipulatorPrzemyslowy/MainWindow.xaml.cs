@@ -42,6 +42,8 @@ namespace ManipulatorPrzemyslowy
             serialPort = new SerialPort();
 
             InitializeComponent();
+
+            UpdateVisibleData();
         }
 
         //Uruchamia okno Communication Port lub jeżeli jest ono uruchomione aktywuje je
@@ -64,7 +66,7 @@ namespace ManipulatorPrzemyslowy
         private void DataUpdated(object sender, UpdateDataEventArgs e)
         {
             data = e.data;
-            testLbl.Content = e.data.BaudRate;
+            UpdateVisibleData();
         }
 
         //W przypadku gdy okno ComPort zostało zamknięte kasuje odniesienie do niego w głównym oknie
@@ -81,6 +83,7 @@ namespace ManipulatorPrzemyslowy
         //Zamyka pozostałe okna gdy główne zostało wyłączone
         private void Window_Closed(object sender, EventArgs e)
         {
+            serialPort?.Close();
             comPort?.Close();
         }
 
@@ -96,6 +99,8 @@ namespace ManipulatorPrzemyslowy
                 serialPort.StopBits = data.PortStopBits;
                 serialPort.Handshake = data.PortHandshake;
                 serialPort.Open();
+
+                serialPort.Write("WH\r");
 
                 ConnectButton.Content = "Disconnect";
             }
@@ -115,6 +120,21 @@ namespace ManipulatorPrzemyslowy
                 serialPort.Write("PING");
             }
         }
+
+        //Aktualizuje widoczne dane na temat portu w MainWindow
+        private void UpdateVisibleData()
+        {
+            PortLbl.Content = data.PortName.ToString();
+            BaudRateLbl.Content = data.BaudRate.ToString();
+            DataBitsLbl.Content = data.DataBits.ToString();
+            ParityLbl.Content = data.PortParity.ToString();
+            HandshakeLbl.Content = data.PortHandshake.ToString();
+            SendTimeoutLbl.Content = data.SendTimeout.ToString();
+            ReceiveTimeoutLbl.Content = data.ReceiveTimeout.ToString();
+
+
+        }
+
     }
 
     

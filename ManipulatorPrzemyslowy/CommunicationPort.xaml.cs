@@ -70,6 +70,7 @@ namespace ManipulatorPrzemyslowy
 
         }
 
+        //Zapisuje otrzymane dane
         public void SetData(SendData d)
         {
             data = d;
@@ -113,9 +114,9 @@ namespace ManipulatorPrzemyslowy
             }
             catch (ArgumentException ex)
             {
-
+                //obsługa błędu związana z niewłaściwą nazwą lub brakiem nazwy portu COM
             }
-            catch(FormatException ex)
+            catch (FormatException ex)
             {
                 //obsługa błędu związana z niewłaściwymi wartościami w SendTImeout oraz ReceiveTimeout
             }
