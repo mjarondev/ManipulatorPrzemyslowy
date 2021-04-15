@@ -35,15 +35,25 @@ namespace ManipulatorPrzemyslowy
 
         public MainWindow()
         {
-            //inicjalizacja z domyslnymi ustawieniami portu
-            //TODO: dodać obsługę wywalenia wyjątku gdy nie ma aktywnych portów COM
-            data = new SendData();
 
-            serialPort = new SerialPort();
-
+            //inicjalizacja z domyslnymi ustawieniami portu oraz uaktualnienie wyswietlanych danych
             InitializeComponent();
 
-            UpdateVisibleData();
+            data = new SendData();
+            serialPort = new SerialPort();
+
+            try
+            {
+                data.SetToDefault();
+                UpdateVisibleData();
+            }
+            catch(ComPortNotActiveException ex)
+            {
+                SetEmptyVisibleData();
+                MessageBox.Show(ex.Message);
+            }
+
+
         }
 
         //Uruchamia okno Communication Port lub jeżeli jest ono uruchomione aktywuje je
@@ -65,6 +75,7 @@ namespace ManipulatorPrzemyslowy
         //W przypadku gdy w oknie ComPort dane zostały przepisuje te dane do okna głównego
         private void DataUpdated(object sender, UpdateDataEventArgs e)
         {
+            ShowSendControls();
             data = e.data;
             UpdateVisibleData();
         }
@@ -92,17 +103,28 @@ namespace ManipulatorPrzemyslowy
         {
             if(!serialPort.IsOpen)
             {
-                serialPort.PortName = data.PortName;
-                serialPort.BaudRate = data.BaudRate;
-                serialPort.Parity = data.PortParity;
-                serialPort.DataBits = data.DataBits;
-                serialPort.StopBits = data.PortStopBits;
-                serialPort.Handshake = data.PortHandshake;
-                serialPort.Open();
+                try
+                {
+                    serialPort.BaudRate = data.BaudRate;
+                    serialPort.Parity = data.PortParity;
+                    serialPort.DataBits = data.DataBits;
+                    serialPort.StopBits = data.PortStopBits;
+                    serialPort.Handshake = data.PortHandshake;
+                    serialPort.PortName = data.PortName;
+                    serialPort.Open();
 
-                serialPort.Write("WH\r");
+                    serialPort.Write("WH\r");
 
-                ConnectButton.Content = "Disconnect";
+                    ConnectButton.Content = "Disconnect";
+                }
+                catch(ComPortNotActiveException ex)
+                {
+                    serialPort.Close();
+                    data.SetToEmpty();
+                    SetEmptyVisibleData();
+                    MessageBox.Show(ex.Message);
+                }
+                
             }
             else
             {
@@ -112,7 +134,7 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
-        //Wysyła PING na sztywno, do zmiany
+        //Wysyła wiadomość, do zmiany
         private void SendButton_Click(object sender, RoutedEventArgs e)
         {
             if(serialPort.IsOpen)
@@ -124,16 +146,52 @@ namespace ManipulatorPrzemyslowy
         //Aktualizuje widoczne dane na temat portu w MainWindow
         private void UpdateVisibleData()
         {
-            PortLbl.Content = data.PortName.ToString();
-            BaudRateLbl.Content = data.BaudRate.ToString();
-            DataBitsLbl.Content = data.DataBits.ToString();
-            ParityLbl.Content = data.PortParity.ToString();
-            StopBitsLbl.Content = data.PortStopBits.ToString();
-            HandshakeLbl.Content = data.PortHandshake.ToString();
-            SendTimeoutLbl.Content = data.SendTimeout.ToString();
-            ReceiveTimeoutLbl.Content = data.ReceiveTimeout.ToString();
+            try
+            {
+                BaudRateLbl.Content = data.BaudRate.ToString();
+                DataBitsLbl.Content = data.DataBits.ToString();
+                ParityLbl.Content = data.PortParity.ToString();
+                StopBitsLbl.Content = data.PortStopBits.ToString();
+                HandshakeLbl.Content = data.PortHandshake.ToString();
+                SendTimeoutLbl.Content = data.SendTimeout.ToString();
+                ReceiveTimeoutLbl.Content = data.ReceiveTimeout.ToString();
+                PortLbl.Content = data.PortName.ToString();
+            }
+            catch(ComPortNotActiveException ex)
+            {
+                data.SetToEmpty();
+                SetEmptyVisibleData();
+                MessageBox.Show(ex.Message);
+            }
 
 
+        }
+
+        private void ShowSendControls()
+        {
+            SendButton.Visibility = Visibility.Visible;
+            ConnectButton.Visibility = Visibility.Visible;
+            SendTxtBox.Visibility = Visibility.Visible;
+            SendLbl.Visibility = Visibility.Visible;
+            InfoLbl.Content = "";
+        }
+
+        private void SetEmptyVisibleData()
+        {
+            SendButton.Visibility = Visibility.Hidden;
+            ConnectButton.Visibility = Visibility.Hidden;
+            SendTxtBox.Visibility = Visibility.Hidden;
+            SendLbl.Visibility = Visibility.Hidden;
+            BaudRateLbl.Content = "";
+            DataBitsLbl.Content = "";
+            ParityLbl.Content = "";
+            StopBitsLbl.Content = "";
+            HandshakeLbl.Content = "";
+            SendTimeoutLbl.Content = "";
+            ReceiveTimeoutLbl.Content = "";
+            PortLbl.Content = "";
+
+            InfoLbl.Content = "Nieprawidłowe ustawienia połączenia portu.\nNależy ponownie ustawić opcje w Communication Port.";
         }
 
     }

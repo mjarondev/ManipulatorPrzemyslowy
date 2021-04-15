@@ -140,15 +140,16 @@ namespace ManipulatorPrzemyslowy
 
         public SendData()
         {
-            setToDefault();
+            SetToEmpty();
         }
 
         //ustawia domyślne ustawienia komunikacji portu COM
-        public void setToDefault()
+        public void SetToDefault()
         {
             if (SerialPort.GetPortNames().Length < 1)
             {
-                throw new InvalidOperationException("Nie znaleziono aktywnego portu COM");
+                SetToEmpty();
+                throw new ComPortNotActiveException("No active port COM found");
             }
             portName = SerialPort.GetPortNames()[0];
             baudRate = 9600;
@@ -157,6 +158,18 @@ namespace ManipulatorPrzemyslowy
             receiveTimeout = 5;
             parity = Parity.None;
             stopBits = StopBits.One;
+            handshake = Handshake.None;
+        }
+
+        public void SetToEmpty()
+        {
+            portName = "";
+            baudRate = 0;
+            dataBits = 0;
+            sendTimeout = 0;
+            receiveTimeout = 0;
+            parity = Parity.None;
+            stopBits = StopBits.None;
             handshake = Handshake.None;
         }
 

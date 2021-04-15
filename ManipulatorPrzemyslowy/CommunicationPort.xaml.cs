@@ -58,14 +58,20 @@ namespace ManipulatorPrzemyslowy
             StopBitsCombo.ItemsSource = stopBits;
             HandshakeComboBox.ItemsSource = handshake;
 
-            SetData(d);
+            try
+            {
+                SetData(d);
 
-            PortCombo.SelectedItem = data.PortName.ToString();
-            BaudRateCombo.SelectedItem = data.BaudRate.ToString();
-            ParityCombo.SelectedItem = data.PortParity.ToString();
-            DataBitsCombo.SelectedItem = data.DataBits.ToString();
-            StopBitsCombo.SelectedItem = data.PortStopBits.ToString();
-            HandshakeComboBox.SelectedItem = data.PortHandshake.ToString();
+                PortCombo.SelectedItem = data.PortName.ToString();
+                BaudRateCombo.SelectedItem = data.BaudRate.ToString();
+                ParityCombo.SelectedItem = data.PortParity.ToString();
+                DataBitsCombo.SelectedItem = data.DataBits.ToString();
+                StopBitsCombo.SelectedItem = data.PortStopBits.ToString();
+                HandshakeComboBox.SelectedItem = data.PortHandshake.ToString();
+            }
+            catch(ComPortNotActiveException)
+            {
+            }
  
 
         }
@@ -107,22 +113,26 @@ namespace ManipulatorPrzemyslowy
                 data.PortParity = (Parity)Enum.Parse(typeof(Parity), ParityCombo.Text, true);
                 data.PortStopBits = (StopBits)Enum.Parse(typeof(StopBits), StopBitsCombo.Text, true);
                 data.PortHandshake = (Handshake)Enum.Parse(typeof(Handshake), HandshakeComboBox.Text, true);
+
+                OnUpdateData(new UpdateDataEventArgs(data));
             }
-            catch(ArgumentOutOfRangeException ex)
+            catch (ArgumentOutOfRangeException ex)
             {
                 //obsługa błędu związana ze zbyt dużymi lub zbyt małymi wartościami w SendTImeout oraz ReceiveTimeout
+                MessageBox.Show(ex.Message);
             }
             catch (ArgumentException ex)
             {
                 //obsługa błędu związana z niewłaściwą nazwą lub brakiem nazwy portu COM
+                MessageBox.Show(ex.Message);
             }
             catch (FormatException ex)
             {
-                //obsługa błędu związana z niewłaściwymi wartościami w SendTImeout oraz ReceiveTimeout
+                //obsługa błędu związana z niewłaściwymi wartościami w SendTimeout oraz ReceiveTimeout
+                MessageBox.Show(ex.Message);
             }
 
 
-            OnUpdateData(new UpdateDataEventArgs(data));
         }
     }
 }
