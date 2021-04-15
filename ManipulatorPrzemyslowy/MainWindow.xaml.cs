@@ -113,9 +113,10 @@ namespace ManipulatorPrzemyslowy
                     serialPort.PortName = data.PortName;
                     serialPort.Open();
 
+                    ConnectButton.Content = "Disconnect";
+
                     serialPort.Write("WH\r");
 
-                    ConnectButton.Content = "Disconnect";
                 }
                 catch(ComPortNotActiveException ex)
                 {
@@ -194,6 +195,19 @@ namespace ManipulatorPrzemyslowy
             InfoLbl.Content = "Nieprawidłowe ustawienia połączenia portu.\nNależy ponownie ustawić opcje w Communication Port.";
         }
 
+        private void RefreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                data.SetToDefault();
+                UpdateVisibleData();
+            }
+            catch (ComPortNotActiveException ex)
+            {
+                SetEmptyVisibleData();
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 
     

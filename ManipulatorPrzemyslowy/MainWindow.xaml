@@ -5,15 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManipulatorPrzemyslowy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="296" Width="440" Closed="Window_Closed" MinWidth="440" MinHeight="240">
+        Title="MainWindow" Height="300" Width="440" Closed="Window_Closed" MinWidth="440" MinHeight="240">
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
-            <StackPanel Width="240">
-                <Button x:Name="CommunicationPortButton" Content="Communication Port" FontSize="22" Click="CommunicationPortButton_Click"/>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="CommunicationPortButton" Content="Communication Port" FontSize="22" Click="CommunicationPortButton_Click"/>
+                    <Button x:Name="RefreshButton" ToolTip="Refresh to default" Click="RefreshButton_Click">
+                        <DockPanel>
+                            <Image Source="icons/refresh.ico" Height="30" Width="30"/>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
                 <Button Content="Command tool" FontSize="22"/>
                 <Button Content="Jog operator" FontSize="22"/>
                 <Button x:Name="ConnectButton" Content="Connect" FontSize="22" Click="ConnectButton_Click"/>
-                <StackPanel Height="40" Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal">
                     <Label x:Name="SendLbl" Content="Wysyłana wiadomość:" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <TextBox x:Name="SendTxtBox" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="110"/>
                 </StackPanel>
