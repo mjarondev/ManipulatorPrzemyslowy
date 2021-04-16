@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO.Ports;
-
+using System.Threading;
 
 namespace ManipulatorPrzemyslowy
 {
@@ -22,7 +22,6 @@ namespace ManipulatorPrzemyslowy
     /// </summary>
     public partial class MainWindow : Window
     {
-        //events
 
         //other windows
         CommunicationPort comPort;
@@ -38,7 +37,7 @@ namespace ManipulatorPrzemyslowy
 
             //inicjalizacja z domyslnymi ustawieniami portu oraz uaktualnienie wyswietlanych danych
             InitializeComponent();
-
+            
             data = new SendData();
             serialPort = new SerialPort();
 
@@ -54,6 +53,19 @@ namespace ManipulatorPrzemyslowy
             }
 
 
+        }
+
+        //w momencie otrzymania informacji z portu pobiera je i uaktualnia dane w głównym oknie
+        // serialPort.DataReceived jest uruchamiany w pobocznym wątku, dlatego został użyty Dispatcher do uaktualnienia
+        // danych w wątku głównym obsługującym główne okno
+        private void DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            Dispatcher.BeginInvoke(new Action(() => 
+            { while (serialPort.BytesToRead >= 1) 
+                { 
+                    InfoLbl.Content = serialPort.ReadLine().ToString() + serialPort.BytesToRead.ToString(); 
+                }
+            }));
         }
 
         //Uruchamia okno Communication Port lub jeżeli jest ono uruchomione aktywuje je
@@ -78,6 +90,8 @@ namespace ManipulatorPrzemyslowy
             ShowSendControls();
             data = e.data;
             UpdateVisibleData();
+            serialPort.Close();
+            ConnectButton.Content = "Connect";
         }
 
         //W przypadku gdy okno ComPort zostało zamknięte kasuje odniesienie do niego w głównym oknie
@@ -111,16 +125,21 @@ namespace ManipulatorPrzemyslowy
                     serialPort.StopBits = data.PortStopBits;
                     serialPort.Handshake = data.PortHandshake;
                     serialPort.PortName = data.PortName;
+
+                    serialPort.DataReceived += DataReceived;
+
                     serialPort.Open();
 
                     ConnectButton.Content = "Disconnect";
 
                     serialPort.Write("WH\r");
 
+
                 }
                 catch(ComPortNotActiveException ex)
                 {
                     serialPort.Close();
+                    serialPort.DataReceived -= DataReceived;
                     data.SetToEmpty();
                     SetEmptyVisibleData();
                     MessageBox.Show(ex.Message);
@@ -131,7 +150,6 @@ namespace ManipulatorPrzemyslowy
             {
                 serialPort.Close();
                 ConnectButton.Content = "Connect";
-
             }
         }
 
@@ -199,6 +217,7 @@ namespace ManipulatorPrzemyslowy
         {
             try
             {
+                ShowSendControls();
                 data.SetToDefault();
                 UpdateVisibleData();
             }
@@ -208,6 +227,7 @@ namespace ManipulatorPrzemyslowy
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 
     

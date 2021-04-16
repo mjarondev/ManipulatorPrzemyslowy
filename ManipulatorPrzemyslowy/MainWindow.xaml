@@ -17,8 +17,8 @@
                         </DockPanel>
                     </Button>
                 </StackPanel>
-                <Button Content="Command tool" FontSize="22"/>
-                <Button Content="Jog operator" FontSize="22"/>
+                <Button x:Name="CommandToolButton" Content="Command tool" FontSize="22"/>
+                <Button x:Name="JogOperatorButton" Content="Jog operator" FontSize="22"/>
                 <Button x:Name="ConnectButton" Content="Connect" FontSize="22" Click="ConnectButton_Click"/>
                 <StackPanel Orientation="Horizontal">
                     <Label x:Name="SendLbl" Content="Wysyłana wiadomość:" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
