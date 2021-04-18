@@ -25,6 +25,7 @@ namespace ManipulatorPrzemyslowy
 
         //other windows
         CommunicationPort comPort;
+        CommandTool comTool;
 
         //dane połączenia z portem COM
         SendData data;
@@ -110,6 +111,7 @@ namespace ManipulatorPrzemyslowy
         {
             serialPort?.Close();
             comPort?.Close();
+            comTool?.Close();
         }
 
         //Ustawia i otwiera/zapyka serial port
@@ -228,6 +230,28 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
+        private void ComToolWindowClosed(object sender, WindowClosedEventArgs e)
+        {
+            if (comTool != null)
+            {
+                comTool.WindowClosed -= ComToolWindowClosed;
+                comTool = null;
+            }
+        }
+
+        private void CommandToolButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (comTool is null)
+            {
+                comTool = new CommandTool();
+                comTool.WindowClosed += ComToolWindowClosed;
+                comTool.Show();
+            }
+            else
+            {
+                comTool.Activate();
+            }
+        }
     }
 
     

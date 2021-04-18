@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManipulatorPrzemyslowy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="440" Closed="Window_Closed" MinWidth="440" MinHeight="240">
+        Title="MainWindow" Height="300" Width="480" Closed="Window_Closed" MinWidth="460" MinHeight="240">
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
             <StackPanel>
@@ -17,7 +17,7 @@
                         </DockPanel>
                     </Button>
                 </StackPanel>
-                <Button x:Name="CommandToolButton" Content="Command tool" FontSize="22"/>
+                <Button x:Name="CommandToolButton" Content="Command tool" FontSize="22" Click="CommandToolButton_Click"/>
                 <Button x:Name="JogOperatorButton" Content="Jog operator" FontSize="22"/>
                 <Button x:Name="ConnectButton" Content="Connect" FontSize="22" Click="ConnectButton_Click"/>
                 <StackPanel Orientation="Horizontal">
@@ -26,33 +26,33 @@
                 </StackPanel>
                 <Button x:Name="SendButton" Content="Send" FontSize="22" Click="SendButton_Click"/>
             </StackPanel>
-            <StackPanel Width="200">
-                <Expander Header="Current ComPort data" FontSize="9">
+            <StackPanel Width="240">
+                <Expander Header="Current ComPort data" FontSize="11">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                            <Label Content="Port:" FontSize="9"/>
-                            <Label Content="Baud rate:" FontSize="9"/>
-                            <Label Content="DataBits" FontSize="9"/>
-                            <Label Content="Parity:" FontSize="9"/>
-                            <Label Content="Stop bits:" FontSize="9"/>
-                            <Label Content="Handshake:" FontSize="9"/>
-                            <Label Content="Send timeout:" FontSize="9"/>
-                            <Label Content="Receive timeout:" FontSize="9"/>
+                            <Label Content="Port:" FontSize="11"/>
+                            <Label Content="Baud rate:" FontSize="11"/>
+                            <Label Content="DataBits" FontSize="11"/>
+                            <Label Content="Parity:" FontSize="11"/>
+                            <Label Content="Stop bits:" FontSize="11"/>
+                            <Label Content="Handshake:" FontSize="11"/>
+                            <Label Content="Send timeout:" FontSize="11"/>
+                            <Label Content="Receive timeout:" FontSize="11"/>
                         </StackPanel>
                         <StackPanel>
-                            <Label x:Name="PortLbl" Content="" FontSize="9"/>
-                            <Label x:Name="BaudRateLbl" Content="" FontSize="9"/>
-                            <Label x:Name="DataBitsLbl" Content="" FontSize="9"/>
-                            <Label x:Name="ParityLbl" Content="" FontSize="9"/>
-                            <Label x:Name="StopBitsLbl" Content="" FontSize="9"/>
-                            <Label x:Name="HandshakeLbl" Content="" FontSize="9"/>
-                            <Label x:Name="SendTimeoutLbl" Content="" FontSize="9"/>
-                            <Label x:Name="ReceiveTimeoutLbl" Content="" FontSize="9"/>
+                            <Label x:Name="PortLbl" Content="" FontSize="11"/>
+                            <Label x:Name="BaudRateLbl" Content="" FontSize="11"/>
+                            <Label x:Name="DataBitsLbl" Content="" FontSize="11"/>
+                            <Label x:Name="ParityLbl" Content="" FontSize="11"/>
+                            <Label x:Name="StopBitsLbl" Content="" FontSize="11"/>
+                            <Label x:Name="HandshakeLbl" Content="" FontSize="11"/>
+                            <Label x:Name="SendTimeoutLbl" Content="" FontSize="11"/>
+                            <Label x:Name="ReceiveTimeoutLbl" Content="" FontSize="11"/>
                         </StackPanel>
                     </StackPanel>
                 </Expander>
             </StackPanel>
         </StackPanel>
-        <Label x:Name="InfoLbl" Content="" HorizontalAlignment="Center" Margin="0,211,0,0" VerticalAlignment="Top" Height="59" Width="420"/>
+        <Label x:Name="InfoLbl" Content="" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Height="21" Width="420"/>
     </Grid>
 </Window>
