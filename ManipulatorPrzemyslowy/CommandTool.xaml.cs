@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Linq;
 
 namespace ManipulatorPrzemyslowy
 {
@@ -30,6 +31,7 @@ namespace ManipulatorPrzemyslowy
             "PL", "PMR", "PMW", "PR", "PRN", "PT", "PW", "PX", "QN", "RC",
             "RN", "RS", "RT", "SC", "SD", "SF", "SM", "SP", "STR", "TB",
             "TBD", "TI", "TL", "VR", "WH", "WT", "XO"};
+        
         string[] syntax = new string[] {
             "AN - And\nSyntax: AN <operation data>",
             "CF - Change Figure\nSyntax: CF <position number> [, [<R/L>] [, [<A/B>] [, [<N/F>]]]]",
@@ -181,6 +183,71 @@ namespace ManipulatorPrzemyslowy
         private void CommandList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SyntaxLbl.Content = commandSyntax[CommandList.SelectedItem.ToString()];
+        }
+
+
+        private void CommandList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Return)
+                CommandTxtBox.Text = CommandList.SelectedItem.ToString();
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void CommandTxtBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (CommandTxtBox.Text.Length <= 3)
+            {
+                string s = CommandTxtBox.Text.Split(" ")[0];
+                if(s.All<Char>(Char.IsUpper))
+                {
+                    if(commandSyntax.ContainsKey(s))
+                    {
+                        CommandList.SelectedItem = s;
+                        CommandList.ScrollIntoView(s);
+                    }
+                    else
+                    {
+                        foreach(string str in commandSyntax.Keys)
+                        {
+                            if(str.StartsWith(s))
+                            {
+                                CommandList.SelectedItem = str;
+                                CommandList.ScrollIntoView(str);
+                                break;
+                            }
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    SyntaxLbl.Content = "Nie ma takiej komendy";
+                }
+            }
+
+        }
+
+        private void CommandTxtBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Down && CommandList.SelectedIndex != CommandList.Items.Count)
+            {
+                CommandList.SelectedIndex = CommandList.SelectedIndex + 1;
+                CommandList.ScrollIntoView(CommandList.SelectedItem);
+            }
+            else if (e.Key == Key.Up && CommandList.SelectedIndex != 0)
+            {
+                CommandList.SelectedIndex = CommandList.SelectedIndex -1;
+                CommandList.ScrollIntoView(CommandList.SelectedItem);
+            }
+            else if(e.Key == Key.Return)
+            {
+                CommandTxtBox.Text = CommandList.SelectedItem.ToString();
+            }
         }
     }
 }

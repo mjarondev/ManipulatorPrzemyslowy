@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         Title="CommandTool" Height="400" Width="480" Closed="Window_Closed">
     <Grid>
-        <ListBox x:Name="CommandList" Margin="10,47,0,0" Width="232" Height="200" VerticalAlignment="Top" UseLayoutRounding="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" MouseDoubleClick="CommandList_MouseDoubleClick" SelectionChanged="CommandList_SelectionChanged"/>
+        <ListBox x:Name="CommandList" Margin="10,42,0,0" Width="232" Height="200" VerticalAlignment="Top" UseLayoutRounding="False" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" MouseDoubleClick="CommandList_MouseDoubleClick" SelectionChanged="CommandList_SelectionChanged" KeyDown="CommandList_KeyDown"/>
         <Label x:Name="SyntaxLbl" Content="" HorizontalAlignment="Center" Margin="0,252,0,0" VerticalAlignment="Top" Width="460" Height="110"/>
-        <TextBox x:Name="CommandTxtBox" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="27"/>
-        <Label Content="connection info&#xD;&#xA;&#xD;&#xA;" HorizontalAlignment="Left" Margin="271,10,0,327" Width="160"/>
-        <Button Content="Send" HorizontalAlignment="Left" Margin="271,42,0,0" VerticalAlignment="Top" Height="28" Width="160"/>
-        <Label Content="robot info" HorizontalAlignment="Left" Margin="271,117,0,0" VerticalAlignment="Top" Width="160" Height="130"/>
-        <Label Content="Data from robot" HorizontalAlignment="Left" Margin="271,85,0,0" VerticalAlignment="Top" Width="160" Height="27"/>
+        <TextBox x:Name="CommandTxtBox" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="27" TextChanged="CommandTxtBox_TextChanged" PreviewKeyDown="CommandTxtBox_PreviewKeyDown"/>
+        <Button Content="Send" HorizontalAlignment="Left" Margin="271,42,0,0" VerticalAlignment="Top" Height="28" Width="160" Click="Button_Click"/>
+        <Label x:Name="RobotInfoLbl" Content="robot info" HorizontalAlignment="Left" Margin="271,107,0,0" VerticalAlignment="Top" Width="160" Height="135"/>
+        <Label Content="Data from robot:" HorizontalAlignment="Left" Margin="271,75,0,0" VerticalAlignment="Top" Width="160" Height="27"/>
+        <Label x:Name="ConnectionInfoLbl" Content="disconnected" HorizontalAlignment="Left" Margin="351,10,0,0" VerticalAlignment="Top" Width="80" Height="27"/>
+        <Label x:Name="ConnectionInfoLbl_Copy" Content="Connection:" HorizontalAlignment="Left" Margin="271,10,0,0" VerticalAlignment="Top" Width="80" Height="27"/>
 
     </Grid>
 </Window>
