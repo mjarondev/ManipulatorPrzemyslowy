@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO.Ports;
 using System.Threading;
+using System.ComponentModel;
 
 namespace ManipulatorPrzemyslowy
 {
@@ -22,6 +23,17 @@ namespace ManipulatorPrzemyslowy
     /// </summary>
     public partial class MainWindow : Window
     {
+        //log (może do zmiany?)
+        BindingList<string> log = new BindingList<string>();
+
+        public void AddToLog(string s)
+        {
+            if (log.Count >= 30)
+            {
+                log.RemoveAt(log.Count-1);
+            }
+            log.Insert(0, DateTime.Now.ToString() + ": " + s);
+        }
 
         //other windows
         CommunicationPort comPort;
@@ -41,10 +53,12 @@ namespace ManipulatorPrzemyslowy
             //inicjalizacja z domyslnymi ustawieniami portu oraz uaktualnienie wyswietlanych danych
             //gdy dane domyślne nie mogą zostać załadowane ustawia dane puste
             InitializeComponent();
-            
+
             data = new SendData();
             serialPort = new SerialPort();
 
+            LogList.ItemsSource = log;
+            
             try
             {
                 data.SetToDefault();
@@ -64,7 +78,7 @@ namespace ManipulatorPrzemyslowy
         // danych w wątku głównym obsługującym główne okno
         private void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            Dispatcher.BeginInvoke(new Action(() => 
+            Dispatcher.Invoke(new Action(() => 
             {
                 receivedData.Clear();
                 while (serialPort.BytesToRead >= 1) 
@@ -73,7 +87,9 @@ namespace ManipulatorPrzemyslowy
                 }
                 if (!(comTool is null))
                     comTool.RobotInfoLbl.Content = receivedData.ToString();
+                AddToLog("Received: " + receivedData.ToString());
             }));
+            
         }
 
         //Uruchamia okno Communication Port lub jeżeli jest ono uruchomione aktywuje je
@@ -144,7 +160,8 @@ namespace ManipulatorPrzemyslowy
 
                     ConnectButton.Content = "Disconnect";
 
-                    serialPort.Write("WH\r");
+                    AddToLog("Connected");
+                    SendToRobot(null, new SendDataEventArgs("WH"));
 
 
                 }
@@ -161,6 +178,7 @@ namespace ManipulatorPrzemyslowy
             else
             {
                 serialPort.Close();
+                serialPort.DataReceived -= DataReceived;
                 if (!(comTool is null))
                     comTool.ConnectionInfoLbl.Content = "disconnected";
                 ConnectButton.Content = "Connect";
@@ -175,6 +193,7 @@ namespace ManipulatorPrzemyslowy
             if (serialPort.IsOpen)
             {
                 serialPort.Write(e.data+"\r");
+                AddToLog("Send: " + e.data);
             }
         }
 
@@ -206,7 +225,6 @@ namespace ManipulatorPrzemyslowy
         private void ShowSendControls()
         {
             ConnectButton.Visibility = Visibility.Visible;
-            InfoLbl.Content = "";
         }
 
         //Chowa przyciski wysyłania oraz czyści widoczne dane na temat portu COM 
@@ -222,7 +240,8 @@ namespace ManipulatorPrzemyslowy
             ReceiveTimeoutLbl.Content = "";
             PortLbl.Content = "";
 
-            InfoLbl.Content = "Nieprawidłowe ustawienia połączenia portu.\nNależy ponownie ustawić opcje w Communication Port.";
+            AddToLog("Nieprawidłowe ustawienia połączenia portu.\nNależy ponownie ustawić opcje w Communication Port.");
+            
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
@@ -269,6 +288,7 @@ namespace ManipulatorPrzemyslowy
                 comTool.Activate();
             }
         }
+
     }
 
     

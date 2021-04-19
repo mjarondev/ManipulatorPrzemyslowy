@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManipulatorPrzemyslowy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="480" Closed="Window_Closed" MinWidth="460" MinHeight="240">
+        Title="MainWindow" Height="410" Width="480" Closed="Window_Closed" MinWidth="460" MinHeight="240">
     <Grid>
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
             <StackPanel>
@@ -49,6 +49,6 @@
                 </Expander>
             </StackPanel>
         </StackPanel>
-        <Label x:Name="InfoLbl" Content="" HorizontalAlignment="Center" Margin="0,249,0,0" VerticalAlignment="Top" Height="21" Width="420"/>
+        <ListBox x:Name="LogList" Margin="30,230,30,14" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
     </Grid>
 </Window>
