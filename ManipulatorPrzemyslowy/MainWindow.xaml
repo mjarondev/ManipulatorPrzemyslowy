@@ -20,11 +20,7 @@
                 <Button x:Name="CommandToolButton" Content="Command tool" FontSize="22" Click="CommandToolButton_Click"/>
                 <Button x:Name="JogOperatorButton" Content="Jog operator" FontSize="22"/>
                 <Button x:Name="ConnectButton" Content="Connect" FontSize="22" Click="ConnectButton_Click"/>
-                <StackPanel Orientation="Horizontal">
-                    <Label x:Name="SendLbl" Content="Wysyłana wiadomość:" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <TextBox x:Name="SendTxtBox" TextWrapping="Wrap" VerticalAlignment="Stretch" Width="110"/>
-                </StackPanel>
-                <Button x:Name="SendButton" Content="Send" FontSize="22" Click="SendButton_Click"/>
+                <StackPanel Orientation="Horizontal"/>
             </StackPanel>
             <StackPanel Width="240">
                 <Expander Header="Current ComPort data" FontSize="11">

@@ -20,7 +20,7 @@ namespace ManipulatorPrzemyslowy
     
     public partial class CommandTool : Window
     {
-        //data
+        //dane o komendach
         string[] commands = new string[] {
             "AN", "CF", "CL", "CP", "CR", "DA", "DC", "DJ", "DL", "DP",
             "DR", "DS", "DW", "EA", "ED", "EQ", "ER", "GC", "GF", "GO",
@@ -162,6 +162,13 @@ namespace ManipulatorPrzemyslowy
             OnWindowClosed(new WindowClosedEventArgs());
         }
 
+        public event EventHandler<SendDataEventArgs> DataSend;
+
+        protected virtual void OnDataSend(SendDataEventArgs e)
+        {
+            DataSend?.Invoke(this, e);
+        }
+
         public CommandTool()
         {
             InitializeComponent();
@@ -174,29 +181,33 @@ namespace ManipulatorPrzemyslowy
             
         }
 
+        //po dwukrotnym naciśnięciu komendy w liście komend wstawia wybraną komendę do okna edycji komend
         private void CommandList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             CommandTxtBox.Text = CommandList.SelectedItem.ToString();
         }
 
-
+        //pokazuje składnie zaznaczonego polecenia
         private void CommandList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SyntaxLbl.Content = commandSyntax[CommandList.SelectedItem.ToString()];
         }
 
-
+        //po naciśnięciu enter w liście komend wstawia wybraną komendę do okna edycji komend
         private void CommandList_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Return)
                 CommandTxtBox.Text = CommandList.SelectedItem.ToString();
         }
 
-
+        //uruchamia zdarzenie wysłania informacji jeżeli port jest otwarty
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if(ConnectionInfoLbl.Content.ToString() == "connected")
+                OnDataSend(new SendDataEventArgs(CommandTxtBox.Text));
         }
 
+        //po wpisaniu części lub całości komendy w oknie edycji pokazuje ją na liście komend i wyświetla jej składnie 
         private void CommandTxtBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (CommandTxtBox.Text.Length <= 3)
@@ -232,6 +243,7 @@ namespace ManipulatorPrzemyslowy
 
         }
 
+        //pozwala na wybieranie komendy z listy komend z poziomu pola edycji komend
         private void CommandTxtBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Down && CommandList.SelectedIndex != CommandList.Items.Count)

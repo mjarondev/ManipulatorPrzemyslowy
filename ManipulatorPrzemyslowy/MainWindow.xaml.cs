@@ -30,13 +30,16 @@ namespace ManipulatorPrzemyslowy
         //dane połączenia z portem COM
         SendData data;
 
+        //dane otrzymane z robota
+        StringBuilder receivedData = new StringBuilder();
+
         //Serial port
         SerialPort serialPort;
 
         public MainWindow()
         {
-
             //inicjalizacja z domyslnymi ustawieniami portu oraz uaktualnienie wyswietlanych danych
+            //gdy dane domyślne nie mogą zostać załadowane ustawia dane puste
             InitializeComponent();
             
             data = new SendData();
@@ -56,16 +59,20 @@ namespace ManipulatorPrzemyslowy
 
         }
 
-        //w momencie otrzymania informacji z portu pobiera je i uaktualnia dane w głównym oknie
+        //w momencie otrzymania informacji z portu pobiera i uaktualnia je
         // serialPort.DataReceived jest uruchamiany w pobocznym wątku, dlatego został użyty Dispatcher do uaktualnienia
         // danych w wątku głównym obsługującym główne okno
         private void DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             Dispatcher.BeginInvoke(new Action(() => 
-            { while (serialPort.BytesToRead >= 1) 
-                { 
-                    InfoLbl.Content = serialPort.ReadLine().ToString() + serialPort.BytesToRead.ToString(); 
+            {
+                receivedData.Clear();
+                while (serialPort.BytesToRead >= 1) 
+                {
+                    receivedData.Append(serialPort.ReadLine()); 
                 }
+                if (!(comTool is null))
+                    comTool.RobotInfoLbl.Content = receivedData.ToString();
             }));
         }
 
@@ -114,7 +121,7 @@ namespace ManipulatorPrzemyslowy
             comTool?.Close();
         }
 
-        //Ustawia i otwiera/zapyka serial port
+        //Ustawia i otwiera/zamyka serial port
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             if(!serialPort.IsOpen)
@@ -131,6 +138,9 @@ namespace ManipulatorPrzemyslowy
                     serialPort.DataReceived += DataReceived;
 
                     serialPort.Open();
+
+                    if (!(comTool is null))
+                        comTool.ConnectionInfoLbl.Content = "connected";
 
                     ConnectButton.Content = "Disconnect";
 
@@ -151,16 +161,20 @@ namespace ManipulatorPrzemyslowy
             else
             {
                 serialPort.Close();
+                if (!(comTool is null))
+                    comTool.ConnectionInfoLbl.Content = "disconnected";
                 ConnectButton.Content = "Connect";
             }
         }
 
-        //Wysyła wiadomość, do zmiany
-        private void SendButton_Click(object sender, RoutedEventArgs e)
+        
+
+        //Wysyła wiadomość do robota jeżeli port COM jest otwarty
+        private void SendToRobot(object sender, SendDataEventArgs e)
         {
-            if(serialPort.IsOpen)
+            if (serialPort.IsOpen)
             {
-                serialPort.Write(SendTxtBox.Text);
+                serialPort.Write(e.data+"\r");
             }
         }
 
@@ -188,21 +202,17 @@ namespace ManipulatorPrzemyslowy
 
         }
 
+        //Pokazuje schowane przyciski łączenia
         private void ShowSendControls()
         {
-            SendButton.Visibility = Visibility.Visible;
             ConnectButton.Visibility = Visibility.Visible;
-            SendTxtBox.Visibility = Visibility.Visible;
-            SendLbl.Visibility = Visibility.Visible;
             InfoLbl.Content = "";
         }
 
+        //Chowa przyciski wysyłania oraz czyści widoczne dane na temat portu COM 
         private void SetEmptyVisibleData()
         {
-            SendButton.Visibility = Visibility.Hidden;
             ConnectButton.Visibility = Visibility.Hidden;
-            SendTxtBox.Visibility = Visibility.Hidden;
-            SendLbl.Visibility = Visibility.Hidden;
             BaudRateLbl.Content = "";
             DataBitsLbl.Content = "";
             ParityLbl.Content = "";
@@ -230,6 +240,7 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
+        //W przypadku gdy okno ComTool zostało zamknięte kasuje odniesienie do niego w głównym oknie
         private void ComToolWindowClosed(object sender, WindowClosedEventArgs e)
         {
             if (comTool != null)
@@ -239,12 +250,18 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
+        //Uruchamia okno Command Tool lub jeżeli jest ono uruchomione aktywuje je
         private void CommandToolButton_Click(object sender, RoutedEventArgs e)
         {
             if (comTool is null)
             {
                 comTool = new CommandTool();
                 comTool.WindowClosed += ComToolWindowClosed;
+                comTool.DataSend += SendToRobot;
+                if(serialPort.IsOpen)
+                    comTool.ConnectionInfoLbl.Content = "connected";
+                else
+                    comTool.ConnectionInfoLbl.Content = "disconnected";
                 comTool.Show();
             }
             else
