@@ -178,7 +178,8 @@ namespace ManipulatorPrzemyslowy
             {
                 commandSyntax.Add(commands[i], syntax[i]);
             }
-            
+            CommandList.SelectedIndex = 0;
+            SyntaxLbl.Content = "";
         }
 
         //po dwukrotnym naciśnięciu komendy w liście komend wstawia wybraną komendę do okna edycji komend
@@ -210,35 +211,46 @@ namespace ManipulatorPrzemyslowy
         //po wpisaniu części lub całości komendy w oknie edycji pokazuje ją na liście komend i wyświetla jej składnie 
         private void CommandTxtBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (CommandTxtBox.Text.Length <= 3)
+            
+            
+            if (CommandTxtBox.Text.Length == 0)
+            {
+                SyntaxLbl.Content = "";
+            }
+            else if (CommandTxtBox.Text.Length <= 3)
             {
                 string s = CommandTxtBox.Text.Split(" ")[0];
-                if(s.All<Char>(Char.IsUpper))
+
+                bool found = false;
+                foreach (string str in commandSyntax.Keys)
                 {
-                    if(commandSyntax.ContainsKey(s))
+                    if (str.StartsWith(s))
                     {
-                        CommandList.SelectedItem = s;
-                        CommandList.ScrollIntoView(s);
-                    }
-                    else
-                    {
-                        foreach(string str in commandSyntax.Keys)
+                        found = true;
+                        if (str == CommandList.SelectedItem.ToString())
                         {
-                            if(str.StartsWith(s))
-                            {
-                                CommandList.SelectedItem = str;
-                                CommandList.ScrollIntoView(str);
-                                break;
-                            }
+                            //w przypadku gdy ta sama komenda jest wpisana wielokronie nie aktywuje się selectionchanged event
+                            //więc jest ono wywoływane ręcznie
+                            CommandList.RaiseEvent(new SelectionChangedEventArgs(
+                                ListBox.SelectionChangedEvent,
+                                new List<ListBoxItem> { CommandList.Items[0] as ListBoxItem },
+                                new List<ListBoxItem> { CommandList.SelectedItem as ListBoxItem }
+                                ));
                         }
-
+                        else
+                        {
+                            CommandList.SelectedItem = str;
+                            CommandList.ScrollIntoView(str);
+                        }
+                        break;
                     }
-
                 }
-                else
+
+                if (!found)
                 {
                     SyntaxLbl.Content = "Nie ma takiej komendy";
                 }
+                
             }
 
         }
@@ -260,6 +272,7 @@ namespace ManipulatorPrzemyslowy
             {
                 CommandTxtBox.Text = CommandList.SelectedItem.ToString();
             }
+
         }
     }
 }
