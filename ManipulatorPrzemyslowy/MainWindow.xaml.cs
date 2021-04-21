@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.IO.Ports;
 using System.Threading;
 using System.ComponentModel;
+using Microsoft.Win32;
+using System.IO;
 
 namespace ManipulatorPrzemyslowy
 {
@@ -28,7 +30,7 @@ namespace ManipulatorPrzemyslowy
 
         public void AddToLog(string s)
         {
-            if (log.Count >= 30)
+            if (log.Count >= 60)
             {
                 log.RemoveAt(log.Count-1);
             }
@@ -83,7 +85,7 @@ namespace ManipulatorPrzemyslowy
                 receivedData.Clear();
                 while (serialPort.BytesToRead >= 1) 
                 {
-                    receivedData.Append(serialPort.ReadLine()); 
+                    receivedData.Append(Convert.ToChar(serialPort.ReadByte())); 
                 }
                 if (!(comTool is null))
                     comTool.RobotInfoLbl.Content = receivedData.ToString();
@@ -289,6 +291,16 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
+        private void SaveLogButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = "LogFile";
+            saveFileDialog.DefaultExt = ".txt";
+            if(saveFileDialog.ShowDialog() == true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, string.Join<string>("\n", log));
+            }
+        }
     }
 
     
