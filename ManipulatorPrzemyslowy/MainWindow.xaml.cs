@@ -88,7 +88,7 @@ namespace ManipulatorPrzemyslowy
                     receivedData.Append(Convert.ToChar(serialPort.ReadByte())); 
                 }
                 if (!(comTool is null))
-                    comTool.RobotInfoLbl.Content = receivedData.ToString();
+                    comTool.RobotInfoTxtBlock.Text = receivedData.ToString();
                 AddToLog("Received: " + receivedData.ToString());
             }));
             

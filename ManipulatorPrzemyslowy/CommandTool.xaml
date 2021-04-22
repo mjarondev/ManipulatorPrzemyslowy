@@ -11,10 +11,10 @@
         <Label x:Name="SyntaxLbl" Content="" HorizontalAlignment="Center" Margin="0,252,0,0" VerticalAlignment="Top" Width="460" Height="110"/>
         <TextBox x:Name="CommandTxtBox" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="27" TextChanged="CommandTxtBox_TextChanged" PreviewKeyDown="CommandTxtBox_PreviewKeyDown"/>
         <Button Content="Send" HorizontalAlignment="Left" Margin="271,42,0,0" VerticalAlignment="Top" Height="28" Width="160" Click="Button_Click"/>
-        <Label x:Name="RobotInfoLbl" Content="" HorizontalAlignment="Left" Margin="271,107,0,0" VerticalAlignment="Top" Width="160" Height="135"/>
         <Label Content="Data from robot:" HorizontalAlignment="Left" Margin="271,75,0,0" VerticalAlignment="Top" Width="160" Height="27"/>
         <Label x:Name="ConnectionInfoLbl" Content="" HorizontalAlignment="Left" Margin="351,10,0,0" VerticalAlignment="Top" Width="80" Height="27"/>
         <Label x:Name="ConnectionInfoLbl_Copy" Content="Connection:" HorizontalAlignment="Left" Margin="271,10,0,0" VerticalAlignment="Top" Width="80" Height="27"/>
+        <TextBlock x:Name="RobotInfoTxtBlock" HorizontalAlignment="Left" Margin="271,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="135" Width="160" IsEnabled="False"/>
 
     </Grid>
 </Window>
