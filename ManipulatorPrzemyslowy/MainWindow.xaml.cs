@@ -40,6 +40,7 @@ namespace ManipulatorPrzemyslowy
         //other windows
         CommunicationPort comPort;
         CommandTool comTool;
+        JogOperator jogOp;
 
         //dane połączenia z portem COM
         SendData data;
@@ -271,6 +272,7 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
+
         //Uruchamia okno Command Tool lub jeżeli jest ono uruchomione aktywuje je
         private void CommandToolButton_Click(object sender, RoutedEventArgs e)
         {
@@ -299,6 +301,35 @@ namespace ManipulatorPrzemyslowy
             if(saveFileDialog.ShowDialog() == true)
             {
                 File.WriteAllText(saveFileDialog.FileName, string.Join<string>("\n", log));
+            }
+        }
+
+        //W przypadku gdy okno ComTool zostało zamknięte kasuje odniesienie do niego w głównym oknie
+        private void JogOpWindowClosed(object sender, WindowClosedEventArgs e)
+        {
+            if (jogOp != null)
+            {
+                jogOp.WindowClosed -= JogOpWindowClosed;
+                jogOp = null;
+            }
+        }
+        //Uruchamia okno Jog Operator lub jeżeli jest ono uruchomione aktywuje je
+        private void JogOperatorButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (jogOp is null)
+            {
+                jogOp = new JogOperator();
+                jogOp.WindowClosed += JogOpWindowClosed;
+                jogOp.DataSend += SendToRobot;
+                if (serialPort.IsOpen)
+                    jogOp.ConnectionInfoLbl.Content = "connected";
+                else
+                    jogOp.ConnectionInfoLbl.Content = "disconnected";
+                jogOp.Show();
+            }
+            else
+            {
+                jogOp.Activate();
             }
         }
     }

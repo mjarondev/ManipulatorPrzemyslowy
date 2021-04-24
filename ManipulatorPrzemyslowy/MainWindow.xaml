@@ -18,7 +18,7 @@
                     </Button>
                 </StackPanel>
                 <Button x:Name="CommandToolButton" Content="Command tool" FontSize="22" Click="CommandToolButton_Click"/>
-                <Button x:Name="JogOperatorButton" Content="Jog operator" FontSize="22"/>
+                <Button x:Name="JogOperatorButton" Content="Jog operator" FontSize="22" Click="JogOperatorButton_Click"/>
                 <Button x:Name="ConnectButton" Content="Connect" FontSize="22" Click="ConnectButton_Click"/>
                 <StackPanel Orientation="Horizontal"/>
             </StackPanel>

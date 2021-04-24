@@ -1,0 +1,114 @@
+﻿<Window x:Class="ManipulatorPrzemyslowy.JogOperator"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManipulatorPrzemyslowy"
+        mc:Ignorable="d"
+        Title="JogOperator" Height="420" Width="300" Closed="Window_Closed">
+    <Grid>
+        <Label x:Name="ConnectionInfoLbl" Content="" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top" Width="80" Height="30"/>
+        <Label x:Name="ConnectionInfoLbl_Copy" Content="Connection:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="80" Height="30" RenderTransformOrigin="0.744,0.53"/>
+        <StackPanel Margin="80,194,80,10" Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label x:Name="ConnectionInfoLbl_Copy1" Content="Waist:" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="ConnectionInfoLbl_Copy2" Content="Shoulder:" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="ConnectionInfoLbl_Copy3" Content="Elbow:" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="ConnectionInfoLbl_Copy4" Content="Twist:" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="ConnectionInfoLbl_Copy5" Content="Pitch:" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+                <Label x:Name="ConnectionInfoLbl_Copy6" Content="Roll:" Height="30" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Width="60" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
+                    <Button x:Name="WaistRightButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
+                        </DockPanel>
+                    </Button>
+                    <Button x:Name="WaistLeftButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
+                <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
+                    <Button x:Name="ShoulderRightButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
+                        </DockPanel>
+                    </Button>
+                    <Button x:Name="ShoulderLeftButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
+                <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
+                    <Button x:Name="ElbowRightButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
+                        </DockPanel>
+                    </Button>
+                    <Button x:Name="ElbowLeftButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
+                <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
+                    <Button x:Name="TwistRightButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
+                        </DockPanel>
+                    </Button>
+                    <Button x:Name="TwistLeftButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
+                <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
+                    <Button x:Name="PitchRightButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
+                        </DockPanel>
+                    </Button>
+                    <Button x:Name="PitchLeftButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
+                <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
+                    <Button x:Name="RollRightButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
+                        </DockPanel>
+                    </Button>
+                    <Button x:Name="RollLeftButton" Width="20" Height="20">
+                        <DockPanel>
+                            <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
+                        </DockPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <Grid Margin="10,42,10,0" Height="71" VerticalAlignment="Top">
+            <Slider x:Name="JogSpeedSlider" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260" FlowDirection="LeftToRight" Margin="0,46,0,0"/>
+            <Label Content="Jog speed:" HorizontalAlignment="Left" Margin="69,10,0,0" VerticalAlignment="Top"/>
+            <TextBox x:Name="JogSpeedTxt" HorizontalAlignment="Left" Margin="140,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        </Grid>
+        <Grid Margin="10,118,10,0" Height="71" VerticalAlignment="Top">
+            <Slider x:Name="JogIncrementSlider" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260" FlowDirection="LeftToRight" Margin="0,43,0,0"/>
+            <Label x:Name="JogIncrementLbl" Content="Jog rotational increment:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
+            <TextBox x:Name="JogIncrementTxt" HorizontalAlignment="Left" Margin="157,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <Label x:Name="JogUnitLbl" Content="deg" HorizontalAlignment="Left" Margin="230,10,0,0" VerticalAlignment="Top"/>
+        </Grid>
+        <Button x:Name="GripButton" ToolTip="Grip is open.&#x0a;Click to close grip." HorizontalAlignment="Left" Margin="246,5,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="GripButton_Click">
+            <DockPanel>
+                <Image Name="im" Source="icons/chwytakZamkniecie.ico" Height="28" Width="28"/>
+            </DockPanel>
+        </Button>
+
+    </Grid>
+</Window>

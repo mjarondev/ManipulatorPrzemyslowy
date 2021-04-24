@@ -271,6 +271,7 @@ namespace ManipulatorPrzemyslowy
             else if(e.Key == Key.Return)
             {
                 CommandTxtBox.Text = CommandList.SelectedItem.ToString();
+                CommandTxtBox.CaretIndex = CommandTxtBox.Text.Length;
             }
 
         }
