@@ -44,6 +44,7 @@ namespace ManipulatorPrzemyslowy
 
         //dane połączenia z portem COM
         SendData data;
+        RobotData robotData;
 
         //dane otrzymane z robota
         StringBuilder receivedData = new StringBuilder();
@@ -59,6 +60,7 @@ namespace ManipulatorPrzemyslowy
 
             data = new SendData();
             serialPort = new SerialPort();
+            robotData = new RobotData();
 
             LogList.ItemsSource = log;
             
