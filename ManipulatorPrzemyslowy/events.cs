@@ -26,12 +26,21 @@ namespace ManipulatorPrzemyslowy
     //Klasa zdarzenia przekazująca komendę do wysłania
     public class SendDataEventArgs : EventArgs
     {
-        public readonly string data;
+        public readonly string command;
+        public readonly string args;
 
-        public SendDataEventArgs(string sendData)
+        public SendDataEventArgs(string sendCommand)
         {
-            data = sendData;
+            command = sendCommand;
+            args = null;
         }
+
+        public SendDataEventArgs(string sendCommand, string sendArgs)
+        {
+            command = sendCommand;
+            args = sendArgs;
+        }
+        
     }
 
 }

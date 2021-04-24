@@ -205,7 +205,14 @@ namespace ManipulatorPrzemyslowy
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if(ConnectionInfoLbl.Content.ToString() == "connected")
-                OnDataSend(new SendDataEventArgs(CommandTxtBox.Text));
+            {
+                string[] s = CommandTxtBox.Text.Split(" ", 2, StringSplitOptions.RemoveEmptyEntries);
+                if(s.Length > 1)
+                    OnDataSend(new SendDataEventArgs(s[0], s[1]));
+                else
+                    OnDataSend(new SendDataEventArgs(s[0]));
+
+            }
         }
 
         //po wpisaniu części lub całości komendy w oknie edycji pokazuje ją na liście komend i wyświetla jej składnie 

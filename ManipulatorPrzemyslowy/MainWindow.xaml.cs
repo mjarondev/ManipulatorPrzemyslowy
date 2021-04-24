@@ -44,10 +44,13 @@ namespace ManipulatorPrzemyslowy
 
         //dane połączenia z portem COM
         SendData data;
-        RobotData robotData;
 
         //dane otrzymane z robota
         StringBuilder receivedData = new StringBuilder();
+        RobotData robotData;
+
+        //dane wyslane do robota
+        string lastSendCommand;
 
         //Serial port
         SerialPort serialPort;
@@ -88,11 +91,23 @@ namespace ManipulatorPrzemyslowy
                 receivedData.Clear();
                 while (serialPort.BytesToRead >= 1) 
                 {
-                    receivedData.Append(Convert.ToChar(serialPort.ReadByte())); 
+                    char c = Convert.ToChar(serialPort.ReadByte());
+                    receivedData.Append(c);
+                    if (c == '\r')
+                        break;
                 }
+                string str = receivedData.ToString().Trim('\n', '\r');
+
                 if (!(comTool is null))
-                    comTool.RobotInfoTxtBlock.Text = receivedData.ToString();
-                AddToLog("Received: " + receivedData.ToString());
+                    comTool.RobotInfoTxtBlock.Text = str;
+
+                if (lastSendCommand == "WH")
+                {
+                    robotData.DecodeFrame(str);
+                }
+
+                AddToLog("Received: " + str);
+                
             }));
             
         }
@@ -197,8 +212,32 @@ namespace ManipulatorPrzemyslowy
         {
             if (serialPort.IsOpen)
             {
-                serialPort.Write(e.data+"\r");
-                AddToLog("Send: " + e.data);
+                string s;
+                if (e.args != null)
+                    s = e.command + " " + e.args + "\r";
+                else
+                    s = e.command + "\r";
+
+                serialPort.Write(s);
+                lastSendCommand = e.command;
+                AddToLog("Send: " + s);
+                UpdateRobotData(e.command);
+                AddToLog("Last command: " + e.command);
+                AddToLog("Last args: " + e.args);
+            }
+        }
+
+        //Sprawdza czy przeslano dane dotyczace informacji zawartych w RobotData
+        private void UpdateRobotData(string s)
+        {
+            switch(s)
+            {
+                case "GO":
+                    robotData.Grip = "O";
+                    break;
+                case "GC":
+                    robotData.Grip = "C";
+                    break;
             }
         }
 

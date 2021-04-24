@@ -8,7 +8,6 @@ namespace ManipulatorPrzemyslowy
     {
         //dane na temat robota z ramki otrzymanej po wysłaniu WH
         private string xCoord, yCoord, zCoord, aAngle, bAngle, cAngle, leftRight, aboveBelow, nonflipFlip, grip;
-        private bool isConnected;
 
         public RobotData()
         {
@@ -18,7 +17,6 @@ namespace ManipulatorPrzemyslowy
         //funkcja ustawiająca puste stringi
         public void EmptyFrame()
         {
-            isConnected = false;
             xCoord = "";
             yCoord = "";
             zCoord = "";
@@ -48,17 +46,6 @@ namespace ManipulatorPrzemyslowy
             grip = data[9];
         }
 
-        public bool IsConnected
-        {
-            get
-            {
-                return isConnected;
-            }
-            set
-            {
-                isConnected = value;
-            }
-        }
     
         public string Grip
         {
