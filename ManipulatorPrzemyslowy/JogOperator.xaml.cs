@@ -16,7 +16,9 @@ namespace ManipulatorPrzemyslowy
 
     public partial class JogOperator : Window
     {
-        string grip;
+        //dane o robocie
+        RobotData robotData;
+
         //events
         public event EventHandler<WindowClosedEventArgs> WindowClosed;
 
@@ -41,31 +43,42 @@ namespace ManipulatorPrzemyslowy
         public JogOperator()
         {
             InitializeComponent();
-            changeGripIcon();
+            ChangeGripIcon();
         }
 
+        public JogOperator(ref RobotData robot)
+        {
+            InitializeComponent();
+            robotData = robot;
+            ChangeGripIcon();
+        }
 
 
         //wysyła komendy do zamknięcia/otwarcia chwytaka zmieniając ikonę przycisku na owtartą/zamkniętą
         private void GripButton_Click(object sender, RoutedEventArgs e)
         {
-            if(grip == "O")
+            if(robotData.Grip == "O")
             {
-                grip = "C";
+                robotData.Grip = "C";
                 OnDataSend(new SendDataEventArgs("GC"));
             }
             else
             {
-                grip = "O";
+                robotData.Grip = "O";
                 OnDataSend(new SendDataEventArgs("GO"));
             }
-            changeGripIcon();
+            ChangeGripIcon();
+        }
+
+        public void UpdateData()
+        {
+            ChangeGripIcon();
         }
 
         //zmienia ikonę przycisku na owtartą/zamkniętą
-        private void changeGripIcon()
+        private void ChangeGripIcon()
         {
-            if (grip == "C")
+            if (robotData.Grip == "C")
             {
                 im.Source = new BitmapImage(new Uri("icons/chwytakOtwarcie.ico", UriKind.Relative));
                 GripButton.ToolTip = "Grip is closed.\nClick to open grip.";

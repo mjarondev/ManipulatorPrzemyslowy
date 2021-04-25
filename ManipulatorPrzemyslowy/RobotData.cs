@@ -17,16 +17,16 @@ namespace ManipulatorPrzemyslowy
         //funkcja ustawiająca puste stringi
         public void EmptyFrame()
         {
-            xCoord = "";
-            yCoord = "";
-            zCoord = "";
-            aAngle = "";
-            bAngle = "";
-            cAngle = "";
-            leftRight = "";
-            aboveBelow = "";
-            nonflipFlip = "";
-            grip = "";
+            xCoord = "0.0";
+            yCoord = "0.0";
+            zCoord = "0.0";
+            aAngle = "0.0";
+            bAngle = "0.0";
+            cAngle = "0.0";
+            leftRight = "R";
+            aboveBelow = "A";
+            nonflipFlip = "N";
+            grip = "O";
         }
 
         //funkcja dekodująca ramkę otrzymaną od robota po wysłaniu WH na dane

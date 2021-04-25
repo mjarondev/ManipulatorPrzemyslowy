@@ -155,6 +155,7 @@ namespace ManipulatorPrzemyslowy
             serialPort?.Close();
             comPort?.Close();
             comTool?.Close();
+            jogOp?.Close();
         }
 
         //Ustawia i otwiera/zamyka serial port
@@ -222,8 +223,8 @@ namespace ManipulatorPrzemyslowy
                 lastSendCommand = e.command;
                 AddToLog("Send: " + s);
                 UpdateRobotData(e.command);
-                AddToLog("Last command: " + e.command);
-                AddToLog("Last args: " + e.args);
+                //AddToLog("Last command: " + e.command);
+                //AddToLog("Last args: " + e.args);
             }
         }
 
@@ -238,6 +239,10 @@ namespace ManipulatorPrzemyslowy
                 case "GC":
                     robotData.Grip = "C";
                     break;
+            }
+            if(jogOp != null)
+            {
+                jogOp.UpdateData();
             }
         }
 
@@ -359,7 +364,7 @@ namespace ManipulatorPrzemyslowy
         {
             if (jogOp is null)
             {
-                jogOp = new JogOperator();
+                jogOp = new JogOperator(ref robotData);
                 jogOp.WindowClosed += JogOpWindowClosed;
                 jogOp.DataSend += SendToRobot;
                 if (serialPort.IsOpen)
