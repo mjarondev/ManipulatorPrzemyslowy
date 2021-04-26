@@ -18,13 +18,14 @@ using System.ComponentModel;
 using Microsoft.Win32;
 using System.IO;
 
+
+
 namespace ManipulatorPrzemyslowy
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
+
         //log (może do zmiany?)
         BindingList<string> log = new BindingList<string>();
 
@@ -57,6 +58,9 @@ namespace ManipulatorPrzemyslowy
 
         public MainWindow()
         {
+            //zmiana cultureinfo wątku, aby separator dziesiętny był kropką a nie przecinkiem
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+
             //inicjalizacja z domyslnymi ustawieniami portu oraz uaktualnienie wyswietlanych danych
             //gdy dane domyślne nie mogą zostać załadowane ustawia dane puste
             InitializeComponent();
@@ -178,6 +182,8 @@ namespace ManipulatorPrzemyslowy
 
                     if (!(comTool is null))
                         comTool.ConnectionInfoLbl.Content = "connected";
+                    if (!(jogOp is null))
+                        jogOp.ConnectionInfoLbl.Content = "connected";
 
                     ConnectButton.Content = "Disconnect";
 
@@ -202,6 +208,8 @@ namespace ManipulatorPrzemyslowy
                 serialPort.DataReceived -= DataReceived;
                 if (!(comTool is null))
                     comTool.ConnectionInfoLbl.Content = "disconnected";
+                if (!(jogOp is null))
+                    jogOp.ConnectionInfoLbl.Content = "disconnected";
                 ConnectButton.Content = "Connect";
             }
         }
@@ -215,11 +223,11 @@ namespace ManipulatorPrzemyslowy
             {
                 string s;
                 if (e.args != null)
-                    s = e.command + " " + e.args + "\r";
+                    s = e.command + " " + e.args;
                 else
-                    s = e.command + "\r";
+                    s = e.command;
 
-                serialPort.Write(s);
+                serialPort.Write(s + "\r");
                 lastSendCommand = e.command;
                 AddToLog("Send: " + s);
                 UpdateRobotData(e.command);

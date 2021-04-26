@@ -207,10 +207,17 @@ namespace ManipulatorPrzemyslowy
             if(ConnectionInfoLbl.Content.ToString() == "connected")
             {
                 string[] s = CommandTxtBox.Text.Split(" ", 2, StringSplitOptions.RemoveEmptyEntries);
-                if(s.Length > 1)
-                    OnDataSend(new SendDataEventArgs(s[0], s[1]));
+                if (commandSyntax.ContainsKey(s[0]))
+                {
+                    if (s.Length > 1)
+                        OnDataSend(new SendDataEventArgs(s[0], s[1]));
+                    else
+                        OnDataSend(new SendDataEventArgs(s[0]));
+                }
                 else
-                    OnDataSend(new SendDataEventArgs(s[0]));
+                {
+                    RobotInfoTxtBlock.Text = "Nie można wysłać.\nNie ma takiego polecenia.";
+                }
 
             }
         }

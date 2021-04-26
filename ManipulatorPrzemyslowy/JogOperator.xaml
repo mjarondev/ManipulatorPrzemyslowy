@@ -20,72 +20,72 @@
             </StackPanel>
             <StackPanel Width="60" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
-                    <Button x:Name="WaistRightButton" Width="20" Height="20">
+                    <Button x:Name="WaistRightButton" Width="20" Height="20" Click="WaistRightButton_Click">
                         <DockPanel>
                             <Image Source="icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
                         </DockPanel>
                     </Button>
-                    <Button x:Name="WaistLeftButton" Width="20" Height="20">
+                    <Button x:Name="WaistLeftButton" Width="20" Height="20" Click="WaistLeftButton_Click">
                         <DockPanel>
                             <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
                         </DockPanel>
                     </Button>
                 </StackPanel>
                 <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
-                    <Button x:Name="ShoulderRightButton" Width="20" Height="20">
+                    <Button x:Name="ShoulderRightButton" Width="20" Height="20" Click="ShoulderRightButton_Click">
                         <DockPanel>
                             <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
                         </DockPanel>
                     </Button>
-                    <Button x:Name="ShoulderLeftButton" Width="20" Height="20">
+                    <Button x:Name="ShoulderLeftButton" Width="20" Height="20" Click="ShoulderLeftButton_Click">
                         <DockPanel>
                             <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
                         </DockPanel>
                     </Button>
                 </StackPanel>
                 <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
-                    <Button x:Name="ElbowRightButton" Width="20" Height="20">
+                    <Button x:Name="ElbowRightButton" Width="20" Height="20" Click="ElbowRightButton_Click">
                         <DockPanel>
                             <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
                         </DockPanel>
                     </Button>
-                    <Button x:Name="ElbowLeftButton" Width="20" Height="20">
+                    <Button x:Name="ElbowLeftButton" Width="20" Height="20" Click="ElbowLeftButton_Click">
                         <DockPanel>
                             <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
                         </DockPanel>
                     </Button>
                 </StackPanel>
                 <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
-                    <Button x:Name="TwistRightButton" Width="20" Height="20">
+                    <Button x:Name="TwistRightButton" Width="20" Height="20" Click="TwistRightButton_Click">
                         <DockPanel>
                             <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
                         </DockPanel>
                     </Button>
-                    <Button x:Name="TwistLeftButton" Width="20" Height="20">
+                    <Button x:Name="TwistLeftButton" Width="20" Height="20" Click="TwistLeftButton_Click">
                         <DockPanel>
                             <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
                         </DockPanel>
                     </Button>
                 </StackPanel>
                 <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
-                    <Button x:Name="PitchRightButton" Width="20" Height="20">
+                    <Button x:Name="PitchRightButton" Width="20" Height="20" Click="PitchRightButton_Click">
                         <DockPanel>
                             <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
                         </DockPanel>
                     </Button>
-                    <Button x:Name="PitchLeftButton" Width="20" Height="20">
+                    <Button x:Name="PitchLeftButton" Width="20" Height="20" Click="PitchLeftButton_Click">
                         <DockPanel>
                             <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
                         </DockPanel>
                     </Button>
                 </StackPanel>
                 <StackPanel Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Width="60">
-                    <Button x:Name="RollRightButton" Width="20" Height="20">
+                    <Button x:Name="RollRightButton" Width="20" Height="20" Click="RollRightButton_Click">
                         <DockPanel>
                             <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="LeftToRight"/>
                         </DockPanel>
                     </Button>
-                    <Button x:Name="RollLeftButton" Width="20" Height="20">
+                    <Button x:Name="RollLeftButton" Width="20" Height="20" Click="RollLeftButton_Click">
                         <DockPanel>
                             <Image Source="/icons/arrow.ico" Height="12" Width="12" FlowDirection="RightToLeft"/>
                         </DockPanel>
@@ -94,14 +94,14 @@
             </StackPanel>
         </StackPanel>
         <Grid Margin="10,42,10,0" Height="71" VerticalAlignment="Top">
-            <Slider x:Name="JogSpeedSlider" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260" FlowDirection="LeftToRight" Margin="0,46,0,0"/>
+            <Slider x:Name="JogSpeedSlider" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260" FlowDirection="LeftToRight" Margin="0,46,0,0" ValueChanged="JogSpeedSlider_ValueChanged" Focusable="False" IsMoveToPointEnabled="True" PreviewMouseLeftButtonUp="JogSpeedSlider_PreviewMouseLeftButtonUp"/>
             <Label Content="Jog speed:" HorizontalAlignment="Left" Margin="69,10,0,0" VerticalAlignment="Top"/>
-            <TextBox x:Name="JogSpeedTxt" HorizontalAlignment="Left" Margin="140,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="JogSpeedTxt" HorizontalAlignment="Left" Margin="140,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" KeyDown="JogSpeedTxt_KeyDown" LostFocus="JogSpeedTxt_LostFocus" Text="0" MaxLength="5"/>
         </Grid>
         <Grid Margin="10,118,10,0" Height="71" VerticalAlignment="Top">
-            <Slider x:Name="JogIncrementSlider" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260" FlowDirection="LeftToRight" Margin="0,43,0,0"/>
+            <Slider x:Name="JogIncrementSlider" HorizontalAlignment="Center" VerticalAlignment="Top" Width="260" FlowDirection="LeftToRight" Margin="0,43,0,0" IsMoveToPointEnabled="True" ValueChanged="JogIncrementSlider_ValueChanged" Focusable="False"/>
             <Label x:Name="JogIncrementLbl" Content="Jog rotational increment:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Right"/>
-            <TextBox x:Name="JogIncrementTxt" HorizontalAlignment="Left" Margin="157,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <TextBox x:Name="JogIncrementTxt" HorizontalAlignment="Left" Margin="157,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="26" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="0" KeyDown="JogIncrementTxt_KeyDown" LostFocus="JogIncrementTxt_LostFocus" MaxLength="5"/>
             <Label x:Name="JogUnitLbl" Content="deg" HorizontalAlignment="Left" Margin="230,10,0,0" VerticalAlignment="Top"/>
         </Grid>
         <Button x:Name="GripButton" ToolTip="Grip is open.&#x0a;Click to close grip." HorizontalAlignment="Left" Margin="246,5,0,0" VerticalAlignment="Top" Height="30" Width="30" Click="GripButton_Click">
