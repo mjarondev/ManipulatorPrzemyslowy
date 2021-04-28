@@ -14,7 +14,17 @@
         <Label Content="Data from robot:" HorizontalAlignment="Left" Margin="271,75,0,0" VerticalAlignment="Top" Width="160" Height="27"/>
         <Label x:Name="ConnectionInfoLbl" Content="" HorizontalAlignment="Left" Margin="351,10,0,0" VerticalAlignment="Top" Width="80" Height="27"/>
         <Label x:Name="ConnectionInfoLbl_Copy" Content="Connection:" HorizontalAlignment="Left" Margin="271,10,0,0" VerticalAlignment="Top" Width="80" Height="27"/>
-        <TextBlock x:Name="RobotInfoTxtBlock" HorizontalAlignment="Left" Margin="271,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="135" Width="160" IsEnabled="False"/>
+        <TextBlock x:Name="RobotInfoTxtBlock" HorizontalAlignment="Left" Margin="271,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="135" Width="160" IsEnabled="True" Focusable="True">
+            <TextBlock.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Kopiuj" Click="RobotInfoCopy">
+                        <MenuItem.Icon>
+                            <Image Source="icons/Copy_16x.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </TextBlock.ContextMenu>
+        </TextBlock>
 
     </Grid>
 </Window>

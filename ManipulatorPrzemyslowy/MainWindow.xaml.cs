@@ -29,14 +29,6 @@ namespace ManipulatorPrzemyslowy
         //log (może do zmiany?)
         BindingList<string> log = new BindingList<string>();
 
-        public void AddToLog(string s)
-        {
-            if (log.Count >= 60)
-            {
-                log.RemoveAt(log.Count-1);
-            }
-            log.Insert(0, DateTime.Now.ToString() + ": " + s);
-        }
 
         //other windows
         CommunicationPort comPort;
@@ -347,6 +339,7 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
+        //Zapisuje Log do pliku
         private void SaveLogButton_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -387,6 +380,7 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
+        //zmienia rozmiar okna po rozwinięciu CurrentComPortData
         private void Expander_Expanded(object sender, RoutedEventArgs e)
         {
             this.MaxWidth = 570;
@@ -395,12 +389,46 @@ namespace ManipulatorPrzemyslowy
             ExpanderPanel.Width = 300;
         }
 
+        //zmienia rozmiar okna po zwinięciu CurrentComPortData
         private void Expander_Collapsed(object sender, RoutedEventArgs e)
         {
             this.MaxWidth = 350;
             this.Width = 350;
             Expander.Width = 50;
             ExpanderPanel.Width = 60;
+        }
+
+        //dodaje element do listy Log
+        public void AddToLog(string s)
+        {
+            if (log.Count >= 60)
+            {
+                log.RemoveAt(log.Count - 1);
+            }
+            log.Insert(0, DateTime.Now.ToString() + ": " + s);
+        }
+
+        //kopiuje do schowka zaznaczone elementy z listy Log
+        private void LogListCopy(object sender, RoutedEventArgs e)
+        {
+            StringBuilder str = new StringBuilder();
+            foreach (string item in LogList.SelectedItems)
+                str.Append(item+"\r\n");
+            
+            Clipboard.SetText(str.ToString());
+        }
+
+        //kopiuje do schowka zaznaczone elementy z listy Log
+        private void LogList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.C && (Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+            {
+                StringBuilder str = new StringBuilder();
+                foreach (string item in LogList.SelectedItems)
+                    str.Append(item + "\r\n");
+
+                Clipboard.SetText(str.ToString());
+            }
         }
     }
 

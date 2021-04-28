@@ -49,7 +49,17 @@
                 </Expander>
             </StackPanel>
         </StackPanel>
-        <ListBox x:Name="LogList" Margin="30,280,30,14" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        <ListBox x:Name="LogList" Margin="30,280,30,14" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Extended" KeyDown="LogList_KeyDown">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Kopiuj" Click="LogListCopy">
+                        <MenuItem.Icon>
+                            <Image Source="icons/Copy_16x.png"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
         <Label Content="Log:" HorizontalAlignment="Left" Margin="30,249,0,0" VerticalAlignment="Top"/>
         <Button x:Name="SaveLogButton" Content="Save log to file" Height="28" Margin="0,243,30,0" VerticalAlignment="Top" Click="SaveLogButton_Click" HorizontalAlignment="Right" Width="131"/>
     </Grid>

@@ -11,6 +11,7 @@
     <None Remove="icons\arrow.ico" />
     <None Remove="icons\chwytakOtwarcie.ico" />
     <None Remove="icons\chwytakZamkniecie.ico" />
+    <None Remove="icons\Copy_16x.png" />
     <None Remove="icons\refresh.ico" />
   </ItemGroup>
 
@@ -22,6 +23,7 @@
     <Resource Include="icons\arrow.ico" />
     <Resource Include="icons\chwytakOtwarcie.ico" />
     <Resource Include="icons\chwytakZamkniecie.ico" />
+    <Resource Include="icons\Copy_16x.png" />
     <Resource Include="icons\refresh.ico" />
   </ItemGroup>
 

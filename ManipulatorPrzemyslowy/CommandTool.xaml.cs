@@ -289,5 +289,10 @@ namespace ManipulatorPrzemyslowy
             }
 
         }
+
+        private void RobotInfoCopy(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(RobotInfoTxtBlock.Text);
+        }
     }
 }
