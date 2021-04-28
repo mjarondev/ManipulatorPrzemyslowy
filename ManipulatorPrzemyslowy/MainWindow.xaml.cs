@@ -386,6 +386,22 @@ namespace ManipulatorPrzemyslowy
                 jogOp.Activate();
             }
         }
+
+        private void Expander_Expanded(object sender, RoutedEventArgs e)
+        {
+            this.MaxWidth = 570;
+            this.Width = 570;
+            Expander.Width = 300;
+            ExpanderPanel.Width = 300;
+        }
+
+        private void Expander_Collapsed(object sender, RoutedEventArgs e)
+        {
+            this.MaxWidth = 350;
+            this.Width = 350;
+            Expander.Width = 50;
+            ExpanderPanel.Width = 60;
+        }
     }
 
     
