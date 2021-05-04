@@ -21,6 +21,9 @@ Projekt został napisany przy użyciu
 Dodatkowe biblioteki
 - System.IO.Ports v5.0.1
 
+## Uruchamianie programu
+Aby skompilować program konieczne jest zainstalowanie dodatkowej biblioteki System.IO.Ports.
+
 ## Korzystanie z aplikacji
 Program wykrywa aktywne porty COM, gdy nie wykryje żadnego, nie będzie mógł działać prawidłowo, niemożliwe stanie się połączenie, wysyłanie i otrzymywanie danych. Aby przetestować aplikację bez podłączania zewnętrznych urządzeń należy utworzyć wirtualne porty COM np. za pomocą aplikacji Virtual Serial Port Tools. Wysyłanie i odbieranie wiadomości można testować po utworzeniu wirtualnych portów COM np. za pomocą aplikacji Docklight.
 
