@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="data\Commands.xml" />
     <None Remove="icons\arrow.ico" />
     <None Remove="icons\chwytakOtwarcie.ico" />
     <None Remove="icons\chwytakZamkniecie.ico" />
@@ -21,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="data\Commands.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="icons\arrow.ico" />
     <Resource Include="icons\chwytakOtwarcie.ico" />
     <Resource Include="icons\chwytakZamkniecie.ico" />

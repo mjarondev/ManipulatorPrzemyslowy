@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Commands>
+  <AN>AN - And
+Syntax: AN &lt;operation data&gt;</AN>
+  <CF>CF - Change Figure
+Syntax: CF &lt;position number&gt; [, [&lt;R/L&gt;] [, [&lt;A/B&gt;] [, [&lt;N/F&gt;]]]]</CF>
+  <CL>CL - Counter Load
+Syntax: CL &lt;counter number/character string number&gt;</CL>
+  <CP>CP - Compare Counter
+Syntax: CP &lt;counter number/character string number&gt;</CP>
+  <CR>CR - Counter Read
+Syntax: CR &lt;counter number/character string number&gt;</CR>
+  <DA>DA - Disable Act
+Syntax: DA &lt;input bit number&gt;</DA>
+  <DC>DC - Decrement Counter
+Syntax: DC &lt;counter number&gt;</DC>
+  <DJ>DJ - Draw Joint
+Syntax: DJ &lt;joint number&gt;, &lt;turning angle&gt;</DJ>
+  <DL>DL - DeleteLine
+Syntax: DL &lt;line number (a)&gt; [, [&lt;line number (b)&gt; [, [&lt;step (a)&gt;
+[, [&lt;step (b)&gt;]]]]]]</DL>
+  <DP>DP - Decrement Position
+Syntax: DP</DP>
+  <DR>DR - Data Read
+Syntax: DR [&lt;output bit number&gt;]</DR>
+  <DS>DS - Draw Straight
+Syntax: DS [&lt;travel distance in X&gt;], [&lt;travel distance in Y&gt;],
+[&lt;travel distance in Z&gt;]</DS>
+  <DW>DW - Draw
+Syntax: DW [&lt;travel distance in X&gt;], [&lt;travel distance in Y&gt;],
+[&lt;travel distance in Z&gt;]</DW>
+  <EA>EA - Enable Act
+Syntax: EA [&lt;+/-&gt;] &lt;input bit number&gt;, &lt;line number&gt;
+[, [&lt;branching approach&gt;]]</EA>
+  <ED>ED - End
+Syntax: ED</ED>
+  <EQ>EQ - Equal
+Syntax: EQ &lt;compare value&gt;, &lt;branching line number&gt;</EQ>
+  <ER>ER - Error Read
+Syntax: ER [&lt;alarm history number&gt;]</ER>
+  <GC>GC - Grip Close
+Syntax: GC [&lt;hand number&gt;]</GC>
+  <GF>GF - Grip Flag
+Syntax: GF &lt;switch&gt;</GF>
+  <GO>GO - Grip Open
+Syntax: GO [&lt;hand number&gt;]</GO>
+  <GP>GP - Grip Pressure
+Syntax: GP &lt;starting gripping force&gt;, &lt;retained gripping force&gt;,
+&lt;starting gripping force retention rime&gt;</GP>
+  <GS>GS - Go Sub
+Syntax: [&lt;line number&gt;] [, [&lt;program name&gt;]]</GS>
+  <GT>GT - Go To
+Syntax: GT &lt;line number&gt;</GT>
+  <HE>HE - Here
+Syntax: HE &lt;position number&gt;</HE>
+  <HLT>HLT - Halt
+Syntax: HLT</HLT>
+  <HO>HO - Home
+Syntax: HO [&lt;origin setting approach&gt;]</HO>
+  <IC>IC - Increment Counter
+Syntax: IC &lt;counter number&gt;</IC>
+  <ID>ID - Input Direct
+Syntax: ID [&lt;input bit number&gt;]</ID>
+  <INP>INP - Input
+Syntax: INP &lt;channel number&gt;,
+&lt;counter number/position number/character string number&gt;
+[, [&lt;contents selection&gt;]]</INP>
+  <IP>IP - Increment Position
+Syntax: IP</IP>
+  <JRC>JRC - Joint Roll Change
+Syntax: JRC &lt;[+]1/-1&gt;</JRC>
+  <LG>LG - If Larger
+Syntax: LG &lt;compared value/character string number&gt;,
+&lt;branching line number&gt;</LG>
+  <LR>LR - Line Read
+Syntax: LR [&lt;line number&gt;]</LR>
+  <MA>MA - Move Approach
+Syntax: MA &lt;position number (a)&gt;, &lt;position number (b)&gt;
+[, [&lt;O/C&gt;]]</MA>
+  <MC>MC - Moce Continuous
+Syntax: MC &lt;position number (a)&gt;, &lt;position number (b)&gt;
+[, [&lt;O/C&gt;]]</MC>
+  <MJ>MJ - Move Joint
+Syntax: MJ [&lt;waist joint angle&gt;], [&lt;shoulder joint angle&gt;],
+[&lt;elbow joint angle&gt;], [&lt;twist joint angle&gt;],
+[&lt;pitch joint angle&gt;], [&lt;roll joint angle&gt;]</MJ>
+  <MO>MO - Move
+Syntax: MO &lt;position number&gt; [, [&lt;O/C&gt;]]</MO>
+  <MP>MP - Move Position
+Syntax: MP [&lt;X coordinate value&gt;], [&lt;Y coordinate value&gt;],
+[&lt;Z coordinate value&gt;], [&lt;A turn angle&gt;], [&lt;B turn angle&gt;],
+[&lt;C turn angle&gt;] [, [&lt;R/L&gt;] [, [&lt;A/B&gt;] [, [&lt;N/F&gt;]]]]</MP>
+  <MPB>MPB - Move Playback
+Syntax: MPB [&lt;speed&gt;], [&lt;timer&gt;], [&lt;output ON&gt;], [&lt;Output OFF&gt;],
+[&lt;input ON&gt;], [&lt;input OFF&gt;], [, [&lt;interpolation&gt;, [&lt;X coordinate&gt;],
+[&lt;Y coordinate&gt;], [&lt;Z coordinate&gt;], [&lt;A turning angle&gt;], [&lt;B turning angle&gt;],
+[&lt;C turning angle&gt;] [, [&lt;R/L&gt;] [, [&lt;A/B&gt;] [, [&lt;N/F&gt;]]]] [, [&lt;O/C&gt;]]]</MPB>
+  <MPC>MPC - Move Playback Continuous
+Syntax: MPC [&lt;interpolation&gt;], [&lt;X coordinate&gt;], [&lt;Y coordinate&gt;],
+[&lt;Z coordinate&gt;], [&lt;A turning angle&gt;], [&lt;B turning angle&gt;],
+[&lt;C turning angle&gt;] [, [&lt;R/L&gt;] [, [&lt;A/B&gt;] [, [&lt;N/F&gt;]]]] [, [&lt;O/C&gt;]]]</MPC>
+  <MR>MR - Move R
+Syntax: MR &lt;position number (a)&gt;, &lt;position number (b)&gt;,
+&lt;position number (c)&gt; [, [&lt;O/C&gt;]]</MR>
+  <MRA>MRA - Move R A
+Syntax: MRA &lt;position number&gt; [, [&lt;O/C&gt;]]</MRA>
+  <MS>MS - Move Straight
+Syntax: MS &lt;position number&gt; [, [&lt;O/C&gt;]]</MS>
+  <MT>MT - Move Tool
+Syntax: MT &lt;position number&gt;, [&lt;travel distance&gt;] [, [&lt;O/C&gt;]]</MT>
+  <MTS>MTS - Move Tool Straight
+Syntax: MTS &lt;position number&gt;, [&lt;travel distance&gt;] [, [&lt;O/C&gt;]]</MTS>
+  <N>N - Number
+Syntax: N &lt;program name&gt;</N>
+  <NE>NE - If Not Equal
+Syntax: NE &lt;compared value/character string number&gt;,
+&lt;branching line number&gt;</NE>
+  <NT>NT - Nest
+Syntax: NT</NT>
+  <NW>NW - New
+Syntax: NW</NW>
+  <NX>NX - Next
+Syntax: NX</NX>
+  <OB>OB - Output Bit
+Syntax: OB [&lt;+/-&gt;] &lt;bit number&gt;</OB>
+  <OC>OC - Output Counter
+Syntax: OC &lt;counter number&gt; [, [&lt;output bit&gt;] [, [&lt;bit width&gt;]]]</OC>
+  <OD>OD - Output Direct
+Syntax: OD &lt;output data&gt; [, [&lt;output bit number&gt;] [, [&lt;bit width&gt;]]]</OD>
+  <OG>OG - Origin
+Syntax: OG</OG>
+  <OPN>OPN - Open
+Syntax: OPN &lt;channel number&gt;, &lt;device number&gt;</OPN>
+  <OR>OR - Or
+Syntax: OR &lt;operation data&gt;</OR>
+  <OVR>OVR - Override
+Syntax: OVR &lt;specified override&gt;</OVR>
+  <PA>PA - Pallet Assign
+Syntax: PA &lt;pallet number&gt;, &lt;number of column grid points&gt;,
+&lt;number of row grid points&gt;</PA>
+  <PC>PC - Position Clear
+Syntax: PC &lt;position number (a)&gt; [, [&lt;position number (b)&gt;]]</PC>
+  <PD>PD - Position Define
+Syntax: PD &lt;position number&gt;, [&lt;X coordinate&gt;], [&lt;Y coordinate&gt;],
+[&lt;Z coordinate&gt;], [&lt;A turning angle&gt;], [&lt;B turning angle&gt;], [&lt;C turning angle&gt;]
+[, [&lt;R/L&gt;] [, [&lt;A/B&gt;]] [, [&lt;N/F&gt;]]] [, [&lt;O/C&gt;]]</PD>
+  <PL>PL - Position Load
+Syntax: PL &lt;position number (a)&gt;, &lt;position number (b)&gt;</PL>
+  <PMR>PMR - Parameter Read
+Syntax: PMR ["&lt;parameter name&gt;"]</PMR>
+  <PMW>PMW - Parameter Writing
+Syntax: PMW "&lt;parameter name&gt;", "&lt;parameter contents&gt;"</PMW>
+  <PR>PR - Position Read
+Syntax: PR [&lt;position number&gt;]</PR>
+  <PRN>PRN - Print
+Syntax: PRN &lt;counter value&gt; | &lt;position coordinates&gt; | "&lt;character string data&gt;"</PRN>
+  <PT>PT - Pallet
+Syntax: PT &lt;pallet number&gt;</PT>
+  <PW>PW - Pulse Wait
+Syntax: PW &lt;positioning pulse&gt;</PW>
+  <PX>PX - Position Exchange
+Syntax: PX &lt;position number (a)&gt;, &lt;position number (b)&gt;</PX>
+  <QN>QN - Questio Number
+Syntax: QN [&lt;program name&gt;]</QN>
+  <RC>RC - Repeat Cycle
+Syntax: RC &lt;number of repeated cycles&gt;</RC>
+  <RN>RN - Run
+Syntax: RN [&lt;start line number&gt; [, &lt;end line number&gt; [, &lt;program name&gt;]]]</RN>
+  <RS>RS - Reset
+Syntax: RS [&lt;reset number&gt;]</RS>
+  <RT>RT - Return
+Syntax: RT [&lt;line number&gt;]</RT>
+  <SC>SC - Set Counter
+Syntax: SC &lt;counter number/character string number&gt;,
+[&lt;counter set value/charaster string set value&gt;]</SC>
+  <SD>SD - Speed Define
+Syntax: &lt;moving speed&gt; [, &lt;first order time constant&gt;
+[, &lt;acceleration time&gt;, &lt;deceleration time&gt; [, &lt;CNT setting&gt;]]]</SD>
+  <SF>SF - Shift
+Syntax: SG &lt;position number (a)&gt;, &lt;position number (b)&gt;</SF>
+  <SM>SM - If Smaller
+Syntax: SM &lt;compared value/character string number&gt;,
+&lt;branching line number&gt;</SM>
+  <SP>SP - Speed
+Syntax: SP &lt;speed level&gt; [, &lt;H/L&gt; [, &lt;CNT setting&gt;]]</SP>
+  <STR>STR - Step Read
+Syntax: STR [&lt;step number&gt;]</STR>
+  <TB>TB - Test Bit
+Syntax: TB [&lt;+/-&gt;] &lt;bit number&gt;, &lt;branching line number&gt;</TB>
+  <TBD>TBD - Test Bit Direct
+Syntax: TBD [&lt;+/-&gt;] &lt;input bit number&gt;, &lt;branching line number&gt;</TBD>
+  <TI>TI - Timer
+Syntax: TI &lt;timer counter&gt;</TI>
+  <TL>TL - Tool
+Syntax: TL [&lt;tool length&gt;]</TL>
+  <VR>VR - Version Read
+Syntax: VR</VR>
+  <WH>WH - Where
+Syntax: WH</WH>
+  <WT>WT - What Tool
+Syntax: WT</WT>
+  <XO>XO - Exclusive Or
+Syntax: XO &lt;operation data&gt;</XO>
+</Commands>
