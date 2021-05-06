@@ -306,12 +306,17 @@ namespace ManipulatorPrzemyslowy
             {
                 ShowSendControls();
                 data.SetToDefault();
-                UpdateVisibleData();
             }
             catch (ComPortNotActiveException ex)
             {
                 SetEmptyVisibleData();
                 MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                serialPort.Close();
+                ConnectButton.Content = "Connect";
+                UpdateVisibleData();
             }
         }
 
