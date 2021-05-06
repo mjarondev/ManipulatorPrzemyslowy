@@ -15,11 +15,6 @@ using System.Xml.Linq;
 
 namespace ManipulatorPrzemyslowy
 {
-    /// <summary>
-    /// Interaction logic for CommandTool.xaml
-    /// </summary>
-    
-    
     public partial class CommandTool : Window
     {
         Dictionary<string, string> commandSyntax;
@@ -44,6 +39,7 @@ namespace ManipulatorPrzemyslowy
             DataSend?.Invoke(this, e);
         }
 
+        //konstruktor
         public CommandTool()
         {
             InitializeComponent();
@@ -93,7 +89,8 @@ namespace ManipulatorPrzemyslowy
         //uruchamia zdarzenie wysłania informacji jeżeli port jest otwarty
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(ConnectionInfoLbl.Content.ToString() == "connected")
+            RobotInfoTxtBlock.Text = "";
+            if (ConnectionInfoLbl.Content.ToString() == "connected")
             {
                 string[] s = CommandTxtBox.Text.Split(" ", 2, StringSplitOptions.RemoveEmptyEntries);
                 if (commandSyntax.ContainsKey(s[0]))
@@ -109,12 +106,15 @@ namespace ManipulatorPrzemyslowy
                 }
 
             }
+            else
+            {
+                RobotInfoTxtBlock.Text = "Nie można wysłać.\nPort nie jest połączony.";
+            }
         }
 
         //po wpisaniu części lub całości komendy w oknie edycji pokazuje ją na liście komend i wyświetla jej składnie 
         private void CommandTxtBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
             
             if (CommandTxtBox.Text.Length == 0)
             {
@@ -168,7 +168,7 @@ namespace ManipulatorPrzemyslowy
             }
             else if (e.Key == Key.Up && CommandList.SelectedIndex != 0)
             {
-                CommandList.SelectedIndex = CommandList.SelectedIndex -1;
+                CommandList.SelectedIndex = CommandList.SelectedIndex - 1;
                 CommandList.ScrollIntoView(CommandList.SelectedItem);
             }
             else if(e.Key == Key.Return)
@@ -179,6 +179,7 @@ namespace ManipulatorPrzemyslowy
 
         }
 
+        //Kopiuje tekst z RobotInfo do schowka
         private void RobotInfoCopy(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(RobotInfoTxtBlock.Text);
