@@ -20,6 +20,16 @@ namespace ManipulatorPrzemyslowy
         //dane o robocie
         RobotData robotData;
 
+        enum robotArm
+        {
+            Waist = 1,
+            Shoulder = 2,
+            Elbow = 3,
+            Twist = 4,
+            Pitch = 5,
+            Roll = 6
+        }
+
         //events
         public event EventHandler<WindowClosedEventArgs> WindowClosed;
 
@@ -161,112 +171,76 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
-        private void WaistRightButton_Click(object sender, RoutedEventArgs e)
+        //Wysyła komendę poruszającą wybraną część robota o wybraną ilość stopni
+        private void MoveArm(robotArm armNumber, bool rightSide)
         {
             double value;
             if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
             {
-                OnDataSend(new SendDataEventArgs("DJ 1," + Math.Round(value, 2).ToString()));
+                if (!rightSide)
+                    value = -value;
+                OnDataSend(new SendDataEventArgs("DJ " + (int)armNumber + "," + Math.Round(value, 2).ToString()));
             }
+        }
+
+        private void WaistRightButton_Click(object sender, RoutedEventArgs e)
+        {
+            MoveArm(robotArm.Waist, true);
         }
 
         private void WaistLeftButton_Click(object sender, RoutedEventArgs e)
         {
-            double value;
-            if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
-            {
-                OnDataSend(new SendDataEventArgs("DJ 1," + Math.Round(-value, 2).ToString()));
-            }
+            MoveArm(robotArm.Waist, false);
         }
 
         private void ShoulderRightButton_Click(object sender, RoutedEventArgs e)
         {
-            double value;
-            if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
-            {
-                OnDataSend(new SendDataEventArgs("DJ 2," + Math.Round(value, 2).ToString()));
-            }
+            MoveArm(robotArm.Shoulder, true);
         }
 
         private void ShoulderLeftButton_Click(object sender, RoutedEventArgs e)
         {
-            double value;
-            if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
-            {
-                OnDataSend(new SendDataEventArgs("DJ 2," + Math.Round(-value, 2).ToString()));
-            }
+            MoveArm(robotArm.Shoulder, false);
         }
 
         private void ElbowRightButton_Click(object sender, RoutedEventArgs e)
         {
-            double value;
-            if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
-            {
-                OnDataSend(new SendDataEventArgs("DJ 3," + Math.Round(value, 2).ToString()));
-            }
+            MoveArm(robotArm.Elbow, true);
         }
 
         private void ElbowLeftButton_Click(object sender, RoutedEventArgs e)
         {
-            double value;
-            if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
-            {
-                OnDataSend(new SendDataEventArgs("DJ 3," + Math.Round(-value, 2).ToString()));
-            }
+            MoveArm(robotArm.Elbow, false);
         }
 
         private void TwistRightButton_Click(object sender, RoutedEventArgs e)
         {
-            double value;
-            if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
-            {
-                OnDataSend(new SendDataEventArgs("DJ 4," + Math.Round(value, 2).ToString()));
-            }
+            MoveArm(robotArm.Twist, true);
         }
 
         private void TwistLeftButton_Click(object sender, RoutedEventArgs e)
         {
-            double value;
-            if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
-            {
-                OnDataSend(new SendDataEventArgs("DJ 4," + Math.Round(-value, 2).ToString()));
-            }
+            MoveArm(robotArm.Twist, false);
         }
 
         private void PitchRightButton_Click(object sender, RoutedEventArgs e)
         {
-            double value;
-            if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
-            {
-                OnDataSend(new SendDataEventArgs("DJ 5," + Math.Round(value, 2).ToString()));
-            }
+            MoveArm(robotArm.Pitch, true);
         }
 
         private void PitchLeftButton_Click(object sender, RoutedEventArgs e)
         {
-            double value;
-            if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
-            {
-                OnDataSend(new SendDataEventArgs("DJ 5," + Math.Round(-value, 2).ToString()));
-            }
+            MoveArm(robotArm.Pitch, false);
         }
 
         private void RollRightButton_Click(object sender, RoutedEventArgs e)
         {
-            double value;
-            if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
-            {
-                OnDataSend(new SendDataEventArgs("DJ 6," + Math.Round(value, 2).ToString()));
-            }
+            MoveArm(robotArm.Roll, true);
         }
 
         private void RollLeftButton_Click(object sender, RoutedEventArgs e)
         {
-            double value;
-            if (double.TryParse(JogIncrementTxt.Text, out value) && value >= 0 && value <= maxIncrement)
-            {
-                OnDataSend(new SendDataEventArgs("DJ 6," + Math.Round(-value, 2).ToString()));
-            }
+            MoveArm(robotArm.Roll, false);
         }
     }
 }

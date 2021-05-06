@@ -109,6 +109,8 @@
                 <Image Name="im" Source="icons/chwytakZamkniecie.ico" Height="28" Width="28"/>
             </DockPanel>
         </Button>
+        <Label x:Name="testLbl" Content="Label" Margin="220,189,15,0" VerticalAlignment="Top" Height="76"/>
+        <Label x:Name="testLbl2" Content="Label" Margin="220,270,15,0" VerticalAlignment="Top" Height="84"/>
 
     </Grid>
 </Window>
