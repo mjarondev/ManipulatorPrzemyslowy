@@ -29,24 +29,69 @@ namespace ManipulatorPrzemyslowy
             grip = "O";
         }
 
-        //funkcja dekodująca ramkę otrzymaną od robota po wysłaniu WH na dane
+        //funkcja dekodująca ramkę otrzymaną od robota po wysłaniu WH
         public void DecodeFrame(string frame)
         {
-            //dodac wyjatek
             string[] data = frame.Split(",");
+
+            if (data.Length != 10)
+                throw new InvalidValueException("Incorrect data format.");
+
             xCoord = data[0];
             yCoord = data[1];
             zCoord = data[2];
             aAngle = data[3];
             bAngle = data[4];
             cAngle = data[5];
-            leftRight = data[6];
-            aboveBelow = data[7];
-            nonflipFlip = data[8];
-            grip = data[9];
+            LeftRight = data[6];
+            AboveBelow = data[7];
+            NonflipFlip = data[8];
+            Grip = data[9];
         }
 
+        public string LeftRight
+        {
+            get
+            {
+                return leftRight;
+            }
+            set
+            {
+                if (!(value == "R" || value == "L"))
+                    throw new InvalidValueException("Incorrect data format.");
+                leftRight = value;
+            }
+        }
+
+        public string AboveBelow
+        {
+            get
+            {
+                return aboveBelow;
+            }
+            set
+            {
+                if (!(value == "A" || value == "B"))
+                    throw new InvalidValueException("Incorrect data format.");
+                aboveBelow = value;
+            }
+        }
+
+        public string NonflipFlip
+        {
+            get
+            {
+                return nonflipFlip;
+            }
+            set
+            {
+                if (!(value == "N" || value == "F"))
+                    throw new InvalidValueException("Incorrect data format.");
+                nonflipFlip = value;
+            }
+        }
     
+
         public string Grip
         {
             get
@@ -55,9 +100,9 @@ namespace ManipulatorPrzemyslowy
             }
             set
             {
-                //dodac wyjatek gdy wartosc bedzie nna niz C lub O
-                if (value == "O" || value == "C")
-                    grip = value;
+                if (!(value == "O" || value == "C"))
+                    throw new InvalidValueException("Incorrect data format.");
+                grip = value;
             }
         }
 

@@ -88,7 +88,7 @@ namespace ManipulatorPrzemyslowy
                 while (serialPort.BytesToRead >= 1) 
                 {
                     char c = Convert.ToChar(serialPort.ReadByte());
-                    receivedData.Append(c);
+                    receivedData.Append(Char.ToUpper(c));
                     if (c == '\r')
                         break;
                 }
@@ -97,13 +97,21 @@ namespace ManipulatorPrzemyslowy
                 if (!(comTool is null))
                     comTool.RobotInfoTxtBlock.Text = str;
 
+                AddToLog("Received: " + str);
+
                 if (lastSendCommand == "WH")
                 {
-                    robotData.DecodeFrame(str);
+                    try
+                    {
+                        robotData.DecodeFrame(str);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Cannot decode robot coordinates.");
+                        AddToLog("Cannot decode robot coordinates.");
+                    }
                 }
 
-                AddToLog("Received: " + str);
-                
             }));
             
         }

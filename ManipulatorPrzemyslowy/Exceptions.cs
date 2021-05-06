@@ -28,4 +28,16 @@ namespace ManipulatorPrzemyslowy
         }
     }
 
+    public class InvalidValueException : ApplicationException
+    {
+        public InvalidValueException()
+        {
+
+        }
+        public InvalidValueException(string msg) : base(msg)
+        {
+
+        }
+    }
+
 }
