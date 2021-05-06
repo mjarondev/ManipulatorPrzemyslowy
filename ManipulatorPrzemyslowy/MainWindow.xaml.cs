@@ -107,8 +107,8 @@ namespace ManipulatorPrzemyslowy
                     }
                     catch
                     {
-                        MessageBox.Show("Cannot decode robot coordinates.");
                         AddToLog("Cannot decode robot coordinates.");
+                        MessageBox.Show("Cannot decode robot coordinates.");
                     }
                 }
 
@@ -125,6 +125,7 @@ namespace ManipulatorPrzemyslowy
                 comPort.WindowClosed += ComPortWindowClosed;
                 comPort.UpdateData += DataUpdated;
                 comPort.Show();
+                AddToLog("Communication Port window opened.");
             }
             else
             {
@@ -140,6 +141,7 @@ namespace ManipulatorPrzemyslowy
             UpdateVisibleData();
             serialPort.Close();
             ConnectButton.Content = "Connect";
+            AddToLog("Communication Port data saved.");
         }
 
         //W przypadku gdy okno ComPort zostało zamknięte kasuje odniesienie do niego w głównym oknie
@@ -149,6 +151,7 @@ namespace ManipulatorPrzemyslowy
             {
                 comPort.WindowClosed -= ComPortWindowClosed;
                 comPort = null;
+                AddToLog("Communication Port window closed.");
             }
         }
 
@@ -198,6 +201,7 @@ namespace ManipulatorPrzemyslowy
                     data.SetToEmpty();
                     SetEmptyVisibleData();
                     MessageBox.Show(ex.Message);
+                    AddToLog("Cannot connect: " + ex.Message);
                 }
                 catch(ComPortInvalidValueException ex)
                 {
@@ -206,6 +210,7 @@ namespace ManipulatorPrzemyslowy
                     data.SetToEmpty();
                     SetEmptyVisibleData();
                     MessageBox.Show(ex.Message);
+                    AddToLog("Cannot connect: " + ex.Message);
                 }
                 
             }
@@ -218,11 +223,11 @@ namespace ManipulatorPrzemyslowy
                 if (!(jogOp is null))
                     jogOp.ConnectionInfoLbl.Content = "disconnected";
                 ConnectButton.Content = "Connect";
+                AddToLog("Disconnected.");
             }
         }
 
         
-
         //Wysyła wiadomość do robota jeżeli port COM jest otwarty
         private void SendToRobot(object sender, SendDataEventArgs e)
         {
@@ -304,7 +309,7 @@ namespace ManipulatorPrzemyslowy
             ReceiveTimeoutLbl.Content = "";
             PortLbl.Content = "";
 
-            AddToLog("Nieprawidłowe ustawienia połączenia portu.\nNależy ponownie ustawić opcje w Communication Port.");
+            AddToLog("Incorrect port connection settings.\nNeed to set Communication Port options again.");
             
         }
 
@@ -314,6 +319,7 @@ namespace ManipulatorPrzemyslowy
             {
                 ShowSendControls();
                 data.SetToDefault();
+                AddToLog("Default Communication Port options have been set.");
             }
             catch (ComPortNotActiveException ex)
             {
@@ -335,6 +341,7 @@ namespace ManipulatorPrzemyslowy
             {
                 comTool.WindowClosed -= ComToolWindowClosed;
                 comTool = null;
+                AddToLog("Communication Tool window closed.");
             }
         }
 
@@ -352,6 +359,7 @@ namespace ManipulatorPrzemyslowy
                 else
                     comTool.ConnectionInfoLbl.Content = "disconnected";
                 comTool.Show();
+                AddToLog("Command Tool window opened.");
             }
             else
             {
@@ -369,6 +377,7 @@ namespace ManipulatorPrzemyslowy
             {
                 File.WriteAllText(saveFileDialog.FileName, string.Join<string>("\n", log));
             }
+            AddToLog("Log data saved to file.");
         }
 
         //W przypadku gdy okno ComTool zostało zamknięte kasuje odniesienie do niego w głównym oknie
@@ -378,6 +387,7 @@ namespace ManipulatorPrzemyslowy
             {
                 jogOp.WindowClosed -= JogOpWindowClosed;
                 jogOp = null;
+                AddToLog("Jog Operator window closed.");
             }
         }
         //Uruchamia okno Jog Operator lub jeżeli jest ono uruchomione aktywuje je
@@ -393,6 +403,7 @@ namespace ManipulatorPrzemyslowy
                 else
                     jogOp.ConnectionInfoLbl.Content = "disconnected";
                 jogOp.Show();
+                AddToLog("Jog Operator window opened.");
             }
             else
             {
