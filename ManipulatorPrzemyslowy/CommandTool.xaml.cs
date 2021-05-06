@@ -19,7 +19,7 @@ namespace ManipulatorPrzemyslowy
     {
         Dictionary<string, string> commandSyntax;
 
-        //events
+        //zdarzenia
         public event EventHandler<WindowClosedEventArgs> WindowClosed;
 
         protected virtual void OnWindowClosed(WindowClosedEventArgs e)

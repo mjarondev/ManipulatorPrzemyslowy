@@ -13,10 +13,6 @@ using System.IO.Ports; //zainstalowany przez nuget
 
 namespace ManipulatorPrzemyslowy
 {
-    /// <summary>
-    /// Interaction logic for CommunicationPort.xaml
-    /// </summary>
-    /// 
 
     public partial class CommunicationPort : Window
     {
@@ -28,7 +24,7 @@ namespace ManipulatorPrzemyslowy
         readonly string[] stopBits = Enum.GetNames(typeof(StopBits));
         readonly string[] handshake = Enum.GetNames(typeof(Handshake));
 
-        //events
+        //zdarzenia
         public event EventHandler<WindowClosedEventArgs> WindowClosed;
 
         protected virtual void OnWindowClosed(WindowClosedEventArgs e)
@@ -47,6 +43,7 @@ namespace ManipulatorPrzemyslowy
         //dane połączenia z portem COM
         SendData data;
 
+        //konstruktory
         public CommunicationPort(SendData d)
         {
             InitializeComponent();
@@ -71,6 +68,7 @@ namespace ManipulatorPrzemyslowy
             }
             catch(ComPortNotActiveException)
             {
+                data.SetToEmpty();
             }
  
 

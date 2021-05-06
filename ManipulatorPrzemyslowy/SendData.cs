@@ -19,13 +19,17 @@ namespace ManipulatorPrzemyslowy
         {
             get
             {
+                if (receiveTimeout < 1)
+                {
+                    throw new ComPortInvalidValueException("Invalid receive timeout value.Check input data or COM port connection.");
+                }
                 return receiveTimeout;
             }
             set
             {
                 if (value > 30 || value < 1)
                 {
-                    throw new ArgumentOutOfRangeException("Invalid value, should be in range 1-30");
+                    throw new ComPortInvalidValueException("Invalid receive timeout value, should be in range 1-30.");
                 }
                 receiveTimeout = value;
 
@@ -36,13 +40,17 @@ namespace ManipulatorPrzemyslowy
         {
             get
             {
+                if (sendTimeout < 1)
+                {
+                    throw new ComPortInvalidValueException("Invalid send timeout value. Check input data or COM port connection.");
+                }
                 return sendTimeout;
             }
             set
             {
                 if (value > 30 || value < 1)
                 {
-                    throw new ArgumentOutOfRangeException("Invalid value, should be in range 1-30");
+                    throw new ComPortInvalidValueException("Invalid send timeout value, should be in range 1-30.");
                 }
                 sendTimeout = value;
             }
@@ -59,7 +67,7 @@ namespace ManipulatorPrzemyslowy
                         return portName.ToString();
                     }
                 }
-                throw new ComPortNotActiveException("Selected COM port is not active");
+                throw new ComPortNotActiveException("Selected COM port is not active.");
             }
             set
             {
@@ -69,7 +77,7 @@ namespace ManipulatorPrzemyslowy
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid value, required a COM port name");
+                    throw new ArgumentException("Invalid value, required a COM port name.");
                 }
             }
         }
@@ -78,13 +86,17 @@ namespace ManipulatorPrzemyslowy
         {
             get
             {
+                if(baudRate <= 0)
+                {
+                    throw new ComPortInvalidValueException("Invalid baud rate value. Check input data or COM port connection.");
+                }
                 return baudRate;
             }
             set
             {
                 if (!Int32.TryParse(value.ToString(), out baudRate))
                 {
-                    throw new ArgumentException("Invalid value, cannot convert to Int32");
+                    throw new ArgumentException("Invalid baud rate value, cannot convert to Int32.");
                 }
 
             }
@@ -106,6 +118,10 @@ namespace ManipulatorPrzemyslowy
         {
             get
             {
+                if (dataBits <= 0)
+                {
+                    throw new ComPortInvalidValueException("Invalid data bits value. Check input data or COM port connection.");
+                }
                 return dataBits;
             }
             set
@@ -149,7 +165,7 @@ namespace ManipulatorPrzemyslowy
             if (SerialPort.GetPortNames().Length < 1)
             {
                 SetToEmpty();
-                throw new ComPortNotActiveException("No active port COM found");
+                throw new ComPortNotActiveException("No active port COM found.");
             }
             portName = SerialPort.GetPortNames()[0];
             baudRate = 9600;

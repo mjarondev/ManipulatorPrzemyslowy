@@ -15,4 +15,17 @@ namespace ManipulatorPrzemyslowy
 
         }
     }
+
+    public class ComPortInvalidValueException : ApplicationException
+    {
+        public ComPortInvalidValueException()
+        {
+
+        }
+        public ComPortInvalidValueException(string msg) : base(msg)
+        {
+
+        }
+    }
+
 }

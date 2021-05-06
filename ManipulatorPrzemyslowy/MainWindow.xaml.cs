@@ -161,12 +161,12 @@ namespace ManipulatorPrzemyslowy
             {
                 try
                 {
-                    serialPort.BaudRate = data.BaudRate;
+                    serialPort.PortName = data.PortName;
                     serialPort.Parity = data.PortParity;
                     serialPort.DataBits = data.DataBits;
                     serialPort.StopBits = data.PortStopBits;
                     serialPort.Handshake = data.PortHandshake;
-                    serialPort.PortName = data.PortName;
+                    serialPort.BaudRate = data.BaudRate;
 
                     serialPort.DataReceived += DataReceived;
 
@@ -182,9 +182,16 @@ namespace ManipulatorPrzemyslowy
                     AddToLog("Connected");
                     SendToRobot(null, new SendDataEventArgs("WH"));
 
-
                 }
                 catch(ComPortNotActiveException ex)
+                {
+                    serialPort.Close();
+                    serialPort.DataReceived -= DataReceived;
+                    data.SetToEmpty();
+                    SetEmptyVisibleData();
+                    MessageBox.Show(ex.Message);
+                }
+                catch(ComPortInvalidValueException ex)
                 {
                     serialPort.Close();
                     serialPort.DataReceived -= DataReceived;
