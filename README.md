@@ -8,6 +8,7 @@ Program służący do komunikacji z robotem RV-E2/RV-E2M, umożliwiający progra
 - [Uruchamianie programu](#uruchamianie-programu)
 - [Korzystanie z aplikacji](#korzystanie-z-aplikacji)
 - [Status projektu](#status-projektu)
+- [Screeny projektu](#screeny-projektu)
 
 ## Informacje ogólne
 Program łączy się z robotem za pomocą portu COM. Umożliwia wysyłanie komend do robota i otrzymywanie danych z robota.
@@ -31,4 +32,11 @@ Po uruchomieniu aplikacji pokaże się okno główne i jeżeli jest taka możliw
 
 ## Status projektu
 Program w trakcie rozbudowy
+
+## Screeny projektu
+![MainWindow](https://user-images.githubusercontent.com/82177599/117480593-193cc180-af62-11eb-8e3d-e6d1f1631a42.png)
+![CommunicationPort](https://user-images.githubusercontent.com/82177599/117480483-f6121200-af61-11eb-86f9-9ae61b9702c4.png)
+![JogOperator](https://user-images.githubusercontent.com/82177599/117480505-fdd1b680-af61-11eb-842a-8fa0104a9071.png)
+![CommandTool](https://user-images.githubusercontent.com/82177599/117480532-05915b00-af62-11eb-9106-8f2b50ff940e.png)
+
 
