@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManipulatorPrzemyslowy", "ManipulatorPrzemyslowy\ManipulatorPrzemyslowy.csproj", "{5D6C0048-A5E7-49BB-A5B0-6406911646DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManipulatorPrzemyslowy", "ManipulatorPrzemyslowy\ManipulatorPrzemyslowy.csproj", "{5D6C0048-A5E7-49BB-A5B0-6406911646DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManipulatorPrzemyslowy.Tests.Unit", "ManipulatorPrzemyslowy.Tests.Unit\ManipulatorPrzemyslowy.Tests.Unit.csproj", "{B0838B15-0F0C-42F0-8FB2-52BB42EB3DC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5D6C0048-A5E7-49BB-A5B0-6406911646DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D6C0048-A5E7-49BB-A5B0-6406911646DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D6C0048-A5E7-49BB-A5B0-6406911646DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0838B15-0F0C-42F0-8FB2-52BB42EB3DC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0838B15-0F0C-42F0-8FB2-52BB42EB3DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0838B15-0F0C-42F0-8FB2-52BB42EB3DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0838B15-0F0C-42F0-8FB2-52BB42EB3DC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
