@@ -23,7 +23,14 @@ namespace ManipulatorPrzemyslowy
         // wysyla pozycje do robota
         public void SendPosition(string[] arr)
         {
-            throw new NotImplementedException();
+            if (check.CheckValuesCorrectness(arr))
+            {
+                OnDataSend(new SendDataEventArgs("PD " + string.Join<string>(",", arr)));
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
         }
 
 
@@ -39,17 +46,38 @@ namespace ManipulatorPrzemyslowy
     {
         public bool CheckValuesCorrectness(string[] arr)
         {
-            throw new NotImplementedException();
+            if (arr.Length != 11)
+                throw new ArgumentException();
+
+            bool ret = true;
+            for (int i = 0; i < 7; i++)
+                ret &= CheckNumberCorrectness(arr[i]);
+            for (int i = 7; i < 11; i++)
+                ret &= CheckCharCorrectness(arr[i], i);
+
+            return ret;
+
         }
 
         public bool CheckNumberCorrectness(string s)
         {
-            throw new NotImplementedException();
+            double i;
+            return double.TryParse(s, out i);
         }
 
-        public bool CheckCharCorrectness(string c, int position)
+        public bool CheckCharCorrectness(string s, int position)
         {
-            throw new NotImplementedException();
+            bool CheckChar(string s, int position, string firstLetter, string secondLetter, int checkPosition)
+            {
+                if (position == checkPosition && (s == firstLetter || s == secondLetter))
+                    return true;
+                return false;
+            }
+
+            return CheckChar(s, position, "R", "L", 7) ||
+                CheckChar(s, position, "B", "A", 8) ||
+                CheckChar(s, position, "F", "N", 9) ||
+                CheckChar(s, position, "O", "C", 10);
         }
     }
 }
