@@ -17,9 +17,23 @@ namespace ManipulatorPrzemyslowy
     /// </summary>
     public partial class PositionAdd : Window
     {
+        public event EventHandler<WindowClosedEventArgs> WindowClosed;
+
+        protected virtual void OnWindowClosed(WindowClosedEventArgs e)
+        {
+            WindowClosed?.Invoke(this, e);
+        }
+
         public PositionAdd()
         {
             InitializeComponent();
         }
+
+
+
+
+
+
+
     }
 }

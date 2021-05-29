@@ -29,8 +29,8 @@
         <RadioButton Content="Above" HorizontalAlignment="Left" Margin="200,230,0,0" VerticalAlignment="Top" GroupName="AboveBelow"/>
         <RadioButton Content="Flip" HorizontalAlignment="Left" Margin="100,260,0,0" VerticalAlignment="Top" GroupName="FlipNoFlip" IsChecked="True"/>
         <RadioButton Content="No-Flip" HorizontalAlignment="Left" Margin="200,260,0,0" VerticalAlignment="Top" GroupName="FlipNoFlip"/>
-        <RadioButton Content="Grip Open" HorizontalAlignment="Left" Margin="100,290,0,0" VerticalAlignment="Top" GroupName="Grip" IsChecked="True"/>
-        <RadioButton Content="Grip Close" HorizontalAlignment="Left" Margin="200,290,0,0" VerticalAlignment="Top" GroupName="Grip"/>
+        <RadioButton Content="Open Grip" HorizontalAlignment="Left" Margin="100,290,0,0" VerticalAlignment="Top" GroupName="Grip" IsChecked="True"/>
+        <RadioButton Content="Close Grip" HorizontalAlignment="Left" Margin="200,290,0,0" VerticalAlignment="Top" GroupName="Grip"/>
         <Button Content="Send" HorizontalAlignment="Center" Margin="0,320,0,0" VerticalAlignment="Top" Width="80" Height="30"/>
 
     </Grid>

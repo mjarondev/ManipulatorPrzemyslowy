@@ -10,16 +10,18 @@ using System.Windows;
 
 namespace ManipulatorPrzemyslowy.Tests.Unit
 {
-    class WindowTests
+    [TestFixture(typeof(PositionAdd))]
+    //[TestFixture(typeof(CommandTool))]
+    class WindowTests<T> where T : Window, new()
     {
         [Test]
         public void test()
         {
-            PositionAdd win;
-
+            T win;
+            
             var t = new Thread(() =>
             {
-                win = new PositionAdd();
+                win = new T();
 
                 win.Closed += (s, e) => win.Dispatcher.InvokeShutdown();
 
