@@ -23,6 +23,8 @@ namespace ManipulatorPrzemyslowy
         // wysyla pozycje do robota
         public void SendPosition(string[] arr)
         {
+            
+
             if (check.CheckValuesCorrectness(arr))
             {
                 OnDataSend(new SendDataEventArgs("PD", string.Join<string>(",", arr)));
@@ -51,9 +53,19 @@ namespace ManipulatorPrzemyslowy
 
             bool ret = true;
             for (int i = 0; i < 7; i++)
+            {
                 ret &= CheckNumberCorrectness(arr[i]);
+                if (ret)
+                {
+                    double num = Math.Round(Convert.ToDouble(arr[i]), 2);
+                    if (i == 0 && (num < 1 || num > 999))
+                        throw new ArgumentException();
+                    arr[i] = num.ToString();
+                }
+            }
             for (int i = 7; i < 11; i++)
                 ret &= CheckCharCorrectness(arr[i], i);
+
 
             return ret;
 

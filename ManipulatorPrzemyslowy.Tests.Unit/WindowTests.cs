@@ -12,6 +12,7 @@ namespace ManipulatorPrzemyslowy.Tests.Unit
 {
     [TestFixture(typeof(PositionAdd))]
     //[TestFixture(typeof(CommandTool))]
+    [SetCulture("en-US")]
     class WindowTests<T> where T : Window, new()
     {
         [Test]

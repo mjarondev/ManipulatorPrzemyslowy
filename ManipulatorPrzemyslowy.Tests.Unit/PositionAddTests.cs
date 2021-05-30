@@ -90,6 +90,9 @@ namespace ManipulatorPrzemyslowy.Tests.Unit
 
         [Test]
         [TestCase(new string[] { "1", "2.0", "0.0", "0.0", "0.0", "0.0", "0.0", "L", "B", "F", "O" }, true, true)]
+        [TestCase(new string[] { "15", "2.0", "0.0", "0.0", "0.0", "0.0", "0.0", "L", "B", "F", "O" }, true, true)]
+        [TestCase(new string[] { "0", "2.0", "0.0", "0.0", "0.0", "0.0", "0.0", "L", "B", "F", "O" }, false, false)]
+        [TestCase(new string[] { "1000", "2.0", "0.0", "0.0", "0.0", "0.0", "0.0", "L", "B", "F", "O" }, false, false)]
         [TestCase(new string[] { "1", "10.0", "-30.0", "+20.1", "0.0", "0.0", "0.0", "R", "A", "F", "O" }, true, true)]
         [TestCase(new string[] { "1", "0.0", "0.0", "0.0", "0.0", "0.0", "0.0", "L", "B", "F", "O", "O"}, false, false)]
         [TestCase(new string[] { "1", "1.0", "0.0", "0.0", "0.0", "0.0", "0.0", "B", "F", "O", "O" }, false, false)]

@@ -18,8 +18,6 @@ using System.ComponentModel;
 using Microsoft.Win32;
 using System.IO;
 
-
-
 namespace ManipulatorPrzemyslowy
 {
 
@@ -34,6 +32,7 @@ namespace ManipulatorPrzemyslowy
         CommunicationPort comPort;
         CommandTool comTool;
         JogOperator jogOp;
+        PositionAdd posAdd;
 
         //dane połączenia z portem COM
         SendData data;
@@ -133,6 +132,39 @@ namespace ManipulatorPrzemyslowy
             }
         }
 
+        //Uruchamia okno Position add lub jeżeli jest ono uruchomione aktywuje je
+        private void PositionAddButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (posAdd is null)
+            {
+                posAdd = new PositionAdd();
+                posAdd.WindowClosed += PosAddWindowClosed;
+                posAdd.posAdd.DataSend += SendToRobot;
+                if (serialPort.IsOpen)
+                    posAdd.ConnectionInfoLbl.Content = "connected";
+                else
+                    posAdd.ConnectionInfoLbl.Content = "disconnected";
+                posAdd.Show();
+                AddToLog("Position add window opened.");
+            }
+            else
+            {
+                posAdd.Activate();
+            }
+        }
+
+
+        //W przypadku gdy okno PosAdd zostało zamknięte kasuje odniesienie do niego w głównym oknie
+        private void PosAddWindowClosed(object sender, WindowClosedEventArgs e)
+        {
+            if (posAdd != null)
+            {
+                posAdd.WindowClosed -= PosAddWindowClosed;
+                posAdd = null;
+                AddToLog("Position Add window closed.");
+            }
+        }
+
         //W przypadku gdy w oknie ComPort dane zostały przepisuje te dane do okna głównego
         private void DataUpdated(object sender, UpdateDataEventArgs e)
         {
@@ -163,6 +195,7 @@ namespace ManipulatorPrzemyslowy
             comPort?.Close();
             comTool?.Close();
             jogOp?.Close();
+            posAdd?.Close();
         }
 
         //Ustawia i otwiera/zamyka serial port
@@ -187,6 +220,8 @@ namespace ManipulatorPrzemyslowy
                         comTool.ConnectionInfoLbl.Content = "connected";
                     if (!(jogOp is null))
                         jogOp.ConnectionInfoLbl.Content = "connected";
+                    if (!(posAdd is null))
+                        posAdd.ConnectionInfoLbl.Content = "connected";
 
                     ConnectButton.Content = "Disconnect";
 
@@ -222,6 +257,8 @@ namespace ManipulatorPrzemyslowy
                     comTool.ConnectionInfoLbl.Content = "disconnected";
                 if (!(jogOp is null))
                     jogOp.ConnectionInfoLbl.Content = "disconnected";
+                if (!(posAdd is null))
+                    posAdd.ConnectionInfoLbl.Content = "disconnected";
                 ConnectButton.Content = "Connect";
                 AddToLog("Disconnected.");
             }
@@ -461,6 +498,7 @@ namespace ManipulatorPrzemyslowy
                 Clipboard.SetText(str.ToString());
             }
         }
+
     }
 
     
