@@ -115,5 +115,32 @@ namespace ManipulatorPrzemyslowy.Tests.Unit
 
         }
 
+        [Test]
+        [TestCase(new string[] { "1", "2.0", "0.0", "0.0", "0.0", "0.0", "0.0", "L", "B", "F", "O" }, true, "1,2.0,0.0,0.0,0.0,0.0,0.0,L,B,F,O")]
+        [TestCase(new string[] { "1", "10.0", "-30.0", "+20.1", "0.0", "0.0", "0.0", "R", "A", "F", "O" }, true, "1,10.0,-30.0,+20.1,0.0,0.0,0.0,R,A,F,O")]
+        public void OnSendPositiondIsCalled_ReceivedMessage(string[] arr, bool expectedOut, string expectedArgs)
+        {
+            ICheck checkMoq = Mock.Of<ICheck>(check => check.CheckValuesCorrectness(arr) == expectedOut);
+
+            PositionAddCommunication p = new PositionAddCommunication(checkMoq);
+
+            string receivedCommand = "";
+            string receivedArgs = "";
+            p.DataSend += (sender, args) => { receivedCommand = args.command; receivedArgs = args.args; };
+            
+            try
+            {
+                p.SendPosition(arr);
+            }
+            catch (ArgumentException)
+            {
+            }
+
+            receivedCommand.Should().Be("PD");
+            receivedArgs.Should().Be(expectedArgs);
+
+        }
+
+
     }
 }

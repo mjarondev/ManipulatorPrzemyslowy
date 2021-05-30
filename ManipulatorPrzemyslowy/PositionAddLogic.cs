@@ -25,7 +25,7 @@ namespace ManipulatorPrzemyslowy
         {
             if (check.CheckValuesCorrectness(arr))
             {
-                OnDataSend(new SendDataEventArgs("PD " + string.Join<string>(",", arr)));
+                OnDataSend(new SendDataEventArgs("PD", string.Join<string>(",", arr)));
             }
             else
             {
